@@ -12,8 +12,8 @@ namespace MdClone.Model.Mappers
 
         public FileModelMapper(IMapper mapper) => _mapper = mapper;
 
-        public IFileModel MapToModel(FileModelDto dto) => _mapper.Map<IFileModel>(dto);
+        public IFileModel MapToModel(FileDto dto) => _mapper.Map<IFileModel>(dto);
 
-        public FileModelDto MapToDto(IFileModel model) => _mapper.Map<FileModelDto>(model);
+        public FileDto MapToDto(IFileModel model) => _mapper.Map<FileDto>(model);
     }
 }

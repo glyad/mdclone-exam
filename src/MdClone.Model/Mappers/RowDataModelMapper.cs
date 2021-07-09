@@ -12,8 +12,8 @@ namespace MdClone.Model.Mappers
 
         public RowDataModelMapper(IMapper mapper) => _mapper = mapper;
 
-        public IRowDataModel MapToModel(RowDataModelDto dto) => _mapper.Map<IRowDataModel>(dto);
+        public IRowDataModel MapToModel(RowDataDto dto) => _mapper.Map<IRowDataModel>(dto);
 
-        public RowDataModelDto MapToDto(IRowDataModel model) => _mapper.Map<RowDataModelDto>(model);
+        public RowDataDto MapToDto(IRowDataModel model) => _mapper.Map<RowDataDto>(model);
     }
 }

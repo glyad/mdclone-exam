@@ -12,8 +12,8 @@ namespace MdClone.Model.Mappers
 
         public TableDataModelMapper(IMapper mapper) => _mapper = mapper;
 
-        public ITableDataModel MapToModel(TableDataModelDto dto) => _mapper.Map<ITableDataModel>(dto);
+        public ITableDataModel MapToModel(TableDataDto dto) => _mapper.Map<ITableDataModel>(dto);
 
-        public TableDataModelDto MapToDto(ITableDataModel model) => _mapper.Map<TableDataModelDto>(model);
+        public TableDataDto MapToDto(ITableDataModel model) => _mapper.Map<TableDataDto>(model);
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace MdClone.Data.Contracts.Dto
 {
-    public class FileModelDto
+    public class EmailDto
     {
-        
+
     }
 }

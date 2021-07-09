@@ -1,6 +1,6 @@
 ﻿namespace MdClone.Data.Contracts.Dto
 {
-    public class EmailModelDto
+    public class RowDataDto
     {
 
     }

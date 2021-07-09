@@ -12,8 +12,8 @@ namespace MdClone.Model.Mappers
 
         public EmailModelMapper(IMapper mapper) => _mapper = mapper;
 
-        public IEmailModel MapToModel(EmailModelDto dto) => _mapper.Map<IEmailModel>(dto);
+        public IEmailModel MapToModel(EmailDto dto) => _mapper.Map<IEmailModel>(dto);
 
-        public EmailModelDto MapToDto(IEmailModel model) => _mapper.Map<EmailModelDto>(model);
+        public EmailDto MapToDto(IEmailModel model) => _mapper.Map<EmailDto>(model);
     }
 }

@@ -14,9 +14,9 @@ namespace MdClone.Model.Mappers
 
         private void CreateMaps()
         {
-            CreateDomainObjectMap<EmailModelDto, IEmailModel, EmailModel>();
-            CreateDomainObjectMap<FileModelDto, IFileModel, FileModel>();
-            CreateDomainObjectMap<RowDataModelDto, IRowDataModel, RowDataModel>();
+            CreateDomainObjectMap<EmailDto, IEmailModel, EmailModel>();
+            CreateDomainObjectMap<FileDto, IFileModel, FileModel>();
+            CreateDomainObjectMap<RowDataDto, IRowDataModel, RowDataModel>();
             CreateDomainObjectMap<TableDataModel, ITableDataModel, TableDataModel>();
         }
 
