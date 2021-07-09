@@ -60,7 +60,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmailModelDto.cs" />
+    <Compile Include="FileModelDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RowDataModelDto.cs" />
+    <Compile Include="TableDataModelDto.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
