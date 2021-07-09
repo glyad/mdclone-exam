@@ -21,17 +21,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MdClone.Data.Fake.Providers
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MdClone.Data.Contracts.Dto", "MdClone.Data.Contracts.Dto\MdClone.Data.Contracts.Dto.csproj", "{C266F8C1-E77B-4611-831A-656C26D89F5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MdClone.Data.Contracts.Providers", "MdClone.Data.Contracts.Providers\MdClone.Data.Contracts.Providers.csproj", "{B800878C-0701-42F0-B82D-F11015CC035E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MdClone.Data.Contracts.Providers", "MdClone.Data.Contracts.Providers\MdClone.Data.Contracts.Providers.csproj", "{B800878C-0701-42F0-B82D-F11015CC035E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MdClone.Data.Fake.Containers", "MdClone.Data.Fake.Containers\MdClone.Data.Fake.Containers.csproj", "{F6D78E2E-DCC9-417A-95D1-79715719F9FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MdClone.Data.Fake.Containers", "MdClone.Data.Fake.Containers\MdClone.Data.Fake.Containers.csproj", "{F6D78E2E-DCC9-417A-95D1-79715719F9FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MdClone.Data.Fake.ProviderBuilders", "MdClone.Data.Fake.ProviderBuilders\MdClone.Data.Fake.ProviderBuilders.csproj", "{0A0EA14B-7C56-4E82-A531-1BA1D0935589}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MdClone.Data.Fake.ProviderBuilders", "MdClone.Data.Fake.ProviderBuilders\MdClone.Data.Fake.ProviderBuilders.csproj", "{0A0EA14B-7C56-4E82-A531-1BA1D0935589}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MdClone.Data.Real.Providers", "MdClone.Data.Real.Providers\MdClone.Data.Real.Providers.csproj", "{F2DCB871-AFB5-4C2E-A7D1-3CCCC816DBE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MdClone.Model", "MdClone.Model\MdClone.Model.csproj", "{A06CCDCC-608C-4F73-9929-A46215B3E9EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MdClone.Model", "MdClone.Model\MdClone.Model.csproj", "{A06CCDCC-608C-4F73-9929-A46215B3E9EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MdClone.Model.Contracts", "MdClone.Model.Contracts\MdClone.Model.Contracts.csproj", "{7DC2132E-0CBD-491A-BAB5-0FACBBB35E1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MdClone.Model.Contracts", "MdClone.Model.Contracts\MdClone.Model.Contracts.csproj", "{7DC2132E-0CBD-491A-BAB5-0FACBBB35E1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -106,10 +106,10 @@ Global
 		{F2DCB871-AFB5-4C2E-A7D1-3CCCC816DBE4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A06CCDCC-608C-4F73-9929-A46215B3E9EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A06CCDCC-608C-4F73-9929-A46215B3E9EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A06CCDCC-608C-4F73-9929-A46215B3E9EA}.DebugWithFake|Any CPU.ActiveCfg = Debug|Any CPU
-		{A06CCDCC-608C-4F73-9929-A46215B3E9EA}.DebugWithFake|Any CPU.Build.0 = Debug|Any CPU
-		{A06CCDCC-608C-4F73-9929-A46215B3E9EA}.DebugWithReal|Any CPU.ActiveCfg = Debug|Any CPU
-		{A06CCDCC-608C-4F73-9929-A46215B3E9EA}.DebugWithReal|Any CPU.Build.0 = Debug|Any CPU
+		{A06CCDCC-608C-4F73-9929-A46215B3E9EA}.DebugWithFake|Any CPU.ActiveCfg = DebugWithFake|Any CPU
+		{A06CCDCC-608C-4F73-9929-A46215B3E9EA}.DebugWithFake|Any CPU.Build.0 = DebugWithFake|Any CPU
+		{A06CCDCC-608C-4F73-9929-A46215B3E9EA}.DebugWithReal|Any CPU.ActiveCfg = DebugWithReal|Any CPU
+		{A06CCDCC-608C-4F73-9929-A46215B3E9EA}.DebugWithReal|Any CPU.Build.0 = DebugWithReal|Any CPU
 		{A06CCDCC-608C-4F73-9929-A46215B3E9EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A06CCDCC-608C-4F73-9929-A46215B3E9EA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7DC2132E-0CBD-491A-BAB5-0FACBBB35E1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
