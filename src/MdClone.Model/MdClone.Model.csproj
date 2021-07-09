@@ -83,7 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MdClone.Data.Contracts.Dto\MdClone.Data.Contracts.Dto.csproj">
-      <Project>{D614A3B9-3C44-409D-8E5A-EE6F79A7DA35}</Project>
+      <Project>{C266F8C1-E77B-4611-831A-656C26D89F5C}</Project>
       <Name>MdClone.Data.Contracts.Dto</Name>
     </ProjectReference>
     <ProjectReference Include="..\MdClone.Model.Contracts\MdClone.Model.Contracts.csproj">
