@@ -117,7 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MdClone.Model.Contracts\MdClone.Model.Contracts.csproj">
-      <Project>{8CAAA9B4-EA81-48C1-974E-AFD19655B3C6}</Project>
+      <Project>{7DC2132E-0CBD-491A-BAB5-0FACBBB35E1C}</Project>
       <Name>MdClone.Model.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
