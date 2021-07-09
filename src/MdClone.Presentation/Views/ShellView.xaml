@@ -3,11 +3,47 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:MdClone.Presentation.ViewModels"
+        xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance viewModels:ShellViewModel}"
         Height="450"
         Width="800"
         WindowState="Maximized">
-    <Grid>
-        
+
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+
+            <ListBox Grid.Column="0"
+                     ItemsSource="{Binding Path=Items, Mode=OneWay}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <ContentControl cal:View.Model="{Binding Mode=OneWay}"
+                                            cal:View.Context="Header" />
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Button Grid.Column="1"
+                    Content="Add Table"
+                    Command="{Binding Path=AddTableCommand, Mode=OneWay}" />
+
+            <Button Grid.Column="2"
+                    Content="Add E-Mail"
+                    Command="{Binding Path=AddEmailCommand, Mode=OneWay}" />
+        </Grid>
     </Grid>
 </Window>

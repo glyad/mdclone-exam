@@ -1,5 +1,6 @@
 ﻿using LogoFX.Client.Bootstrapping;
 using LogoFX.Client.Mvvm.Commanding;
+using LogoFX.Client.Mvvm.ViewModel.Services;
 using LogoFX.Client.Mvvm.ViewModelFactory.SimpleContainer;
 
 namespace MdClone.Launcher
@@ -15,6 +16,7 @@ namespace MdClone.Launcher
                 new AppBootstrapper()
                     .UseResolver()
                     .UseCommanding()
+                    .UseViewModelCreatorService()
                     .UseViewModelFactory();
 
             bootstrapper.Initialize();

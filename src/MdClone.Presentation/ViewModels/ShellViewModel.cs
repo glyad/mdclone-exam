@@ -29,7 +29,8 @@ namespace MdClone.Presentation.ViewModels
             .Do(() =>
             {
                 var model = _dataService.CreateNewEmail();
-                var vm = _viewModelCreatorService.CreateViewModel<IEmailModel, EmailViewModel>(model);
+                var vm = _viewModelCreatorService.CreateViewModel<EmailScreenViewModel>();
+                vm.ActivateItem(_viewModelCreatorService.CreateViewModel<IEmailModel, EmailViewModel>(model));
                 Items.Add(vm);
             });
 

@@ -82,7 +82,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ViewModels\EmailScreen.cs" />
+    <Compile Include="ViewModels\EmailScreenViewModel.cs" />
     <Compile Include="ViewModels\EmailViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\TableScreenViewModel.cs" />
@@ -120,6 +120,10 @@
       <Project>{7DC2132E-0CBD-491A-BAB5-0FACBBB35E1C}</Project>
       <Name>MdClone.Model.Contracts</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\EmailScreen\" />
+    <Folder Include="Views\TableScreen\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

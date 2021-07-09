@@ -2,7 +2,7 @@
 
 namespace MdClone.Model
 {
-    public class DataService : IDataService
+    internal class DataService : IDataService
     {
         public DataService()
         {
