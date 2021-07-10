@@ -6,17 +6,17 @@ using Solid.Practices.Composition;
 
 namespace MdClone.Launcher
 {
-    public sealed class AppBootstrapper : BootstrapperContainerBase<SimpleContainerAdapter>
+    public sealed class AppBootstrapper : BootstrapperContainerBase<ExtendedSimpleContainerAdapter>
         .WithRootObject<ShellViewModel>
     {
-        private static readonly SimpleContainerAdapter _container = new SimpleContainerAdapter();
+        private static readonly ExtendedSimpleContainerAdapter _container = new();
 
         public AppBootstrapper()
             : base(_container)
         {
         }
 
-        public override CompositionOptions CompositionOptions => new CompositionOptions
+        public override CompositionOptions CompositionOptions => new()
         {
             Prefixes = new[]
             {

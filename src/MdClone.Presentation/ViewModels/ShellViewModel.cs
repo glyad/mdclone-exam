@@ -9,7 +9,7 @@ using MdClone.Model.Contracts;
 namespace MdClone.Presentation.ViewModels
 {
     [UsedImplicitly]
-    public class ShellViewModel : Conductor<INotifyPropertyChanged>.Collection.AllActive
+    public class ShellViewModel : Conductor<INotifyPropertyChanged>.Collection.OneActive
     {
         private readonly IDataService _dataService;
         private readonly IViewModelCreatorService _viewModelCreatorService;
@@ -31,7 +31,7 @@ namespace MdClone.Presentation.ViewModels
                 var model = _dataService.CreateNewEmail();
                 var vm = _viewModelCreatorService.CreateViewModel<EmailScreenViewModel>();
                 vm.ActivateItem(_viewModelCreatorService.CreateViewModel<IEmailModel, EmailViewModel>(model));
-                Items.Add(vm);
+                ActivateItem(vm);
             });
 
         private ICommand _addTableCommand;
@@ -42,7 +42,7 @@ namespace MdClone.Presentation.ViewModels
             {
                 var model = _dataService.CreateNewTable();
                 var vm = _viewModelCreatorService.CreateViewModel<ITableDataModel, TableScreenViewModel>(model);
-                Items.Add(vm);
+                ActivateItem(vm);
             });
 
         public override string DisplayName
