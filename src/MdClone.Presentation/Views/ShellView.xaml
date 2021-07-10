@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:MdClone.Presentation.ViewModels"
         xmlns:cal="http://www.caliburnproject.org"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:ShellViewModel}"
         Height="450"
@@ -13,7 +15,7 @@
 
     <Grid Margin="12">
         <Grid.RowDefinitions>
-            <RowDefinition Height="32" />
+            <RowDefinition Height="40" />
             <RowDefinition Height="*" />
             <RowDefinition Height="0" />
         </Grid.RowDefinitions>
@@ -32,8 +34,32 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
-                            <ContentControl cal:View.Model="{Binding Mode=OneWay}"
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="32" />
+                            </Grid.ColumnDefinitions>
+                            
+                            <ContentControl Grid.Column="0"
+                                            VerticalAlignment="Center"
+                                            Margin="8, 0, 8,0"
+                                            cal:View.Model="{Binding Mode=OneWay}"
                                             cal:View.Context="Header" />
+
+                            <Button Grid.Column="1"
+                                    Content="x"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Margin="0"
+                                    Width="24"
+                                    Height="24">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                                        <commanding:ExecuteNamedCommandAction CommandName="CloseTabCommand"
+                                                                              Parameter="{Binding}"
+                                                                              ManageEnableState="True" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

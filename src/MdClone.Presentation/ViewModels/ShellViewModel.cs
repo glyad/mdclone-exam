@@ -45,6 +45,32 @@ namespace MdClone.Presentation.ViewModels
                 ActivateItem(vm);
             });
 
+        private ICommand _closeTabCommand;
+
+        public ICommand CloseTabCommand => _closeTabCommand ??= ActionCommand<INotifyPropertyChanged>
+            .When(item => true)
+            .Do(item =>
+            {
+                var index = Items.IndexOf(item);
+                Items.RemoveAt(index);
+
+                if (ActiveItem != null)
+                {
+                    return;
+                }
+
+                if (index >= Items.Count)
+                {
+                    index -= 1;
+                }
+
+                if (index >= 0)
+                {
+                    ActivateItem(Items[index]);
+                }
+            });
+
+
         public override string DisplayName
         {
             get => "MdClone";
