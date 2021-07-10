@@ -73,6 +73,18 @@
                           DisplayMemberPath="DisplayName" />
             </Grid>
 
+            <Grid Grid.Row="3">
+                <ListBox ItemsSource="{Binding Path=FileListCollection, Mode=OneWay}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type viewModels:FileViewModel}">
+                            <Grid>
+                                <TextBlock Text="{Binding Path=DisplayName, Mode=OneWay}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+
             <Grid Grid.Row="3" 
                   Visibility="{Binding Path=IsFileListUpdating, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <!--<Border Background="Black" Opacity="0.4" />-->

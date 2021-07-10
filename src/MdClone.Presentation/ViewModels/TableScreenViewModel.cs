@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Windows.Input;
 using JetBrains.Annotations;
@@ -6,6 +7,7 @@ using LogoFX.Client.Core;
 using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel;
 using LogoFX.Client.Mvvm.ViewModel.Services;
+using LogoFX.Core;
 using MdClone.Model.Contracts;
 
 namespace MdClone.Presentation.ViewModels
@@ -16,17 +18,31 @@ namespace MdClone.Presentation.ViewModels
         private readonly IDataService _dataService;
         private readonly IBrowseFolderService _browseFolderService;
         private readonly IFileSearchService _fileSearchService;
+        private readonly IViewModelCreatorService _viewModelCreatorService;
+        private readonly WrappingCollection _fileListCollection;
 
         public TableScreenViewModel(
             ITableDataModel model, 
             IDataService dataService,
             IBrowseFolderService browseFolderService,
-            IFileSearchService fileSearchService)
+            IFileSearchService fileSearchService,
+            IViewModelCreatorService viewModelCreatorService)
             : base(model)
         {
             _dataService = dataService;
             _browseFolderService = browseFolderService;
             _fileSearchService = fileSearchService;
+            _viewModelCreatorService = viewModelCreatorService;
+
+            _fileListCollection = new WrappingCollection
+            {
+                FactoryMethod = o =>
+                {
+                    var fileViewModel = _viewModelCreatorService.CreateViewModel<IFileModel, FileViewModel>((IFileModel) o);
+                    return fileViewModel;
+                }
+            };
+
             if (FileTypes.Length > 0)
             {
                 SelectedFileType = FileTypes[0];
@@ -84,6 +100,8 @@ namespace MdClone.Presentation.ViewModels
                 });
         }
 
+        public WrappingCollection FileListCollection => _fileListCollection;
+
         public IFileTypeModel[] FileTypes => _dataService.FileTypes;
 
         private IFileTypeModel _selectedFileType;
@@ -109,7 +127,10 @@ namespace MdClone.Presentation.ViewModels
             try
             {
                 IsFileListUpdating = true;
-                var fileList = await _fileSearchService.GetFiles(".", SelectedFileType);
+                
+                _fileListCollection.ClearSources();
+                var fileList = await _fileSearchService.GetFiles(Path, SelectedFileType);
+                _fileListCollection.AddSource(fileList);
             }
 
             finally
