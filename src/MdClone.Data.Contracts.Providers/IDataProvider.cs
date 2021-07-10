@@ -1,7 +1,9 @@
-﻿namespace MdClone.Data.Contracts.Providers
+﻿using MdClone.Data.Contracts.Dto;
+
+namespace MdClone.Data.Contracts.Providers
 {
     public interface IDataProvider
     {
-        
+        TableDataDto LoadData(string filename);
     }
 }

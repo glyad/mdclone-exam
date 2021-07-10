@@ -2,6 +2,6 @@
 {
     public class RowDataDto
     {
-
+        public ItemDataDto[] Items { get; set; }
     }
 }

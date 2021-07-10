@@ -49,9 +49,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Solid.Practices.Modularity">
-      <HintPath>..\..\..\..\..\Users\dmitr\.nuget\packages\solid.practices.modularity\2.3.1\lib\netstandard2.0\Solid.Practices.Modularity.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -68,6 +65,7 @@
     <Compile Include="FileModel.cs" />
     <Compile Include="FileSearchService.cs" />
     <Compile Include="FileTypeModel.cs" />
+    <Compile Include="ItemDataModel.cs" />
     <Compile Include="Mappers\EmailModelMapper.cs" />
     <Compile Include="Mappers\FileModelMapper.cs" />
     <Compile Include="Mappers\MappingProfile.cs" />
@@ -82,6 +80,10 @@
     <ProjectReference Include="..\MdClone.Data.Contracts.Dto\MdClone.Data.Contracts.Dto.csproj">
       <Project>{C266F8C1-E77B-4611-831A-656C26D89F5C}</Project>
       <Name>MdClone.Data.Contracts.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MdClone.Data.Contracts.Providers\MdClone.Data.Contracts.Providers.csproj">
+      <Project>{B800878C-0701-42F0-B82D-F11015CC035E}</Project>
+      <Name>MdClone.Data.Contracts.Providers</Name>
     </ProjectReference>
     <ProjectReference Include="..\MdClone.Model.Contracts\MdClone.Model.Contracts.csproj">
       <Project>{7DC2132E-0CBD-491A-BAB5-0FACBBB35E1C}</Project>

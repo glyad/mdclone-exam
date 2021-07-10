@@ -2,6 +2,6 @@
 {
     public interface IRowDataModel : IAppModel
     {
-
+        IItemDataModel[] Items { get; }
     }
 }

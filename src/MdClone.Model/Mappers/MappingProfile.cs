@@ -9,15 +9,21 @@ namespace MdClone.Model.Mappers
     {
         public MappingProfile()
         {
-            CreateMaps();
+            CreateTableMaps();
+            CreateEMailMaps();
         }
 
-        private void CreateMaps()
+        private void CreateTableMaps()
         {
-            CreateDomainObjectMap<EmailDto, IEmailModel, EmailModel>();
             CreateDomainObjectMap<FileDto, IFileModel, FileModel>();
+            CreateDomainObjectMap<ItemDataDto, IItemDataModel, ItemDataModel>();
             CreateDomainObjectMap<RowDataDto, IRowDataModel, RowDataModel>();
             CreateDomainObjectMap<TableDataModel, ITableDataModel, TableDataModel>();
+        }
+
+        private void CreateEMailMaps()
+        {
+            CreateDomainObjectMap<EmailDto, IEmailModel, EmailModel>();
         }
 
         private void CreateDomainObjectMap<TDto, TContract, TModel>()

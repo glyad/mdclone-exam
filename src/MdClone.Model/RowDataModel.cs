@@ -6,6 +6,6 @@ namespace MdClone.Model
     [UsedImplicitly]
     internal class RowDataModel : AppModel, IRowDataModel
     {
-
+        public IItemDataModel[] Items { get; [UsedImplicitly] set; }
     }
 }

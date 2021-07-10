@@ -1,33 +1,40 @@
-﻿using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Windows.Input;
+using Caliburn.Micro;
 using JetBrains.Annotations;
-using LogoFX.Client.Core;
 using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel;
 using LogoFX.Client.Mvvm.ViewModel.Services;
-using LogoFX.Core;
 using MdClone.Model.Contracts;
 
 namespace MdClone.Presentation.ViewModels
 {
     [UsedImplicitly]
-    public class TableScreenViewModel : ObjectViewModel<ITableDataModel>
+    public class TableDataViewModel : ObjectViewModel<ITableDataModel>
+    {
+        public TableDataViewModel(ITableDataModel model)
+            : base(model)
+        {
+
+        }
+    }
+
+    [UsedImplicitly]
+    public class TableScreenViewModel : Conductor<TableDataViewModel>
     {
         private readonly IDataService _dataService;
         private readonly IBrowseFolderService _browseFolderService;
         private readonly IFileSearchService _fileSearchService;
         private readonly IViewModelCreatorService _viewModelCreatorService;
         private readonly WrappingCollection _fileListCollection;
+        private IFileModel _loadingFile;
 
         public TableScreenViewModel(
-            ITableDataModel model, 
             IDataService dataService,
             IBrowseFolderService browseFolderService,
             IFileSearchService fileSearchService,
             IViewModelCreatorService viewModelCreatorService)
-            : base(model)
         {
             _dataService = dataService;
             _browseFolderService = browseFolderService;
@@ -77,7 +84,7 @@ namespace MdClone.Presentation.ViewModels
         public bool IsDataLoaded
         {
             get => _isDataLoaded;
-            private set => SetProperty(ref _isDataLoaded, value);
+            private set => Set(ref _isDataLoaded, value);
         }
 
         private bool _isFileListUpdating;
@@ -85,7 +92,15 @@ namespace MdClone.Presentation.ViewModels
         public bool IsFileListUpdating
         {
             get => _isFileListUpdating;
-            private set => SetProperty(ref _isFileListUpdating, value);
+            private set => Set(ref _isFileListUpdating, value);
+        }
+
+        private bool _isDataUpdating;
+
+        public bool IsDataUpdating
+        {
+            get => _isDataUpdating;
+            private set => Set(ref _isDataUpdating, value);
         }
 
         private string _path = System.IO.Path.GetFullPath(".");
@@ -93,14 +108,46 @@ namespace MdClone.Presentation.ViewModels
         public string Path
         {
             get => _path;
-            private set =>
-                SetProperty(ref _path, value, new SetPropertyOptions
+            private set
+            {
+                if (Set(ref _path, value))
                 {
-                    AfterValueUpdate = UpdateFileList
-                });
+                    UpdateFileList();
+                }
+            }
         }
 
         public WrappingCollection FileListCollection => _fileListCollection;
+
+        private FileViewModel _selectedFile;
+        public FileViewModel SelectedFile
+        {
+            get => _selectedFile;
+            set
+            {
+                if (Set(ref _selectedFile, value))
+                {
+                    LoadData(_selectedFile.Model);
+                }
+            }
+        }
+
+        private async void LoadData(IFileModel fileModel)
+        {
+            IsDataUpdating = true;
+            IsDataLoaded = false;
+            _loadingFile = fileModel;
+
+            var data = await _dataService.LoadData(fileModel);
+
+            if (_loadingFile != fileModel)
+            {
+                return;
+            }
+
+            IsDataLoaded = true;
+            IsDataUpdating = false;
+        }
 
         public IFileTypeModel[] FileTypes => _dataService.FileTypes;
 
@@ -109,11 +156,13 @@ namespace MdClone.Presentation.ViewModels
         public IFileTypeModel SelectedFileType
         {
             get => _selectedFileType;
-            set =>
-                SetProperty(ref _selectedFileType, value, new SetPropertyOptions
+            set
+            {
+                if (Set(ref _selectedFileType, value))
                 {
-                    AfterValueUpdate = UpdateFileList
-                });
+                    UpdateFileList();
+                }
+            }
         }
 
         private async void UpdateFileList()

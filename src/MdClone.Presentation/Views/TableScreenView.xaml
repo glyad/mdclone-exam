@@ -74,7 +74,8 @@
             </Grid>
 
             <Grid Grid.Row="3">
-                <ListBox ItemsSource="{Binding Path=FileListCollection, Mode=OneWay}">
+                <ListBox ItemsSource="{Binding Path=FileListCollection, Mode=OneWay}"
+                         SelectedValue="{Binding Path=SelectedFile, Mode=TwoWay}">
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type viewModels:FileViewModel}">
                             <Grid>
@@ -94,7 +95,7 @@
 
         <GridSplitter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ResizeDirection="Columns" />
         
-        <TextBlock Grid.Column="2" Text="No Data Laded" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <TextBlock Grid.Column="2" Text="No Data Loaded" VerticalAlignment="Center" HorizontalAlignment="Center" />
 
         <DataGrid Grid.Column="2"
                   Visibility="{Binding Path=IsDataLoaded, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>

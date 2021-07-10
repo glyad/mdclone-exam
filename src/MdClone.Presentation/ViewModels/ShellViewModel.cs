@@ -40,8 +40,7 @@ namespace MdClone.Presentation.ViewModels
             .When(() => true)
             .Do(() =>
             {
-                var model = _dataService.CreateNewTable();
-                var vm = _viewModelCreatorService.CreateViewModel<ITableDataModel, TableScreenViewModel>(model);
+                var vm = _viewModelCreatorService.CreateViewModel<TableScreenViewModel>();
                 ActivateItem(vm);
             });
 

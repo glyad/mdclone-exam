@@ -50,16 +50,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JetBrains.Annotations, Version=2021.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\JetBrains.Annotations.2021.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="Solid.Practices.IoC, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.IoC.2.3.1\lib\netstandard2.0\Solid.Practices.IoC.dll</HintPath>
-    </Reference>
-    <Reference Include="Solid.Practices.Modularity, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Users\dmitr\.nuget\packages\solid.practices.modularity\2.3.1\lib\netstandard2.0\Solid.Practices.Modularity.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -70,18 +60,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CsvReader.cs" />
+    <Compile Include="CsvRow.cs" />
     <Compile Include="DataProvider.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MdClone.Data.Contracts.Dto\MdClone.Data.Contracts.Dto.csproj">
+      <Project>{C266F8C1-E77B-4611-831A-656C26D89F5C}</Project>
+      <Name>MdClone.Data.Contracts.Dto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MdClone.Data.Contracts.Providers\MdClone.Data.Contracts.Providers.csproj">
       <Project>{B800878C-0701-42F0-B82D-F11015CC035E}</Project>
       <Name>MdClone.Data.Contracts.Providers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <PackageReference Include="JetBrains.Annotations">
+      <Version>2021.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Solid.Practices.IoC">
+      <Version>2.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="Solid.Practices.Modularity">
+      <Version>2.3.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
