@@ -49,7 +49,6 @@ namespace MdClone.Presentation.ViewModels
 
         [UsedImplicitly]
         public ICommand CloseTabCommand => _closeTabCommand ??= ActionCommand<INotifyPropertyChanged>
-            .When(item => true)
             .Do(item =>
             {
                 var index = Items.IndexOf(item);

@@ -66,6 +66,7 @@
     <Compile Include="DataService.cs" />
     <Compile Include="EmailModel.cs" />
     <Compile Include="FileModel.cs" />
+    <Compile Include="FileSearchService.cs" />
     <Compile Include="FileTypeModel.cs" />
     <Compile Include="Mappers\EmailModelMapper.cs" />
     <Compile Include="Mappers\FileModelMapper.cs" />

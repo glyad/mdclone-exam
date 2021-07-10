@@ -4,13 +4,13 @@ namespace MdClone.Model
 {
     internal class DataService : IDataService
     {
-        private IFileTypeModel[] _fileTypes;
+        private readonly IFileTypeModel[] _fileTypes;
 
         public DataService()
         {
             _fileTypes = new IFileTypeModel[]
             {
-                new FileTypeModel {Filter = "*.json", DisplayName = "JSON Files (*.json)"}
+                new FileTypeModel {Filter = "*.csv", DisplayName = "CSV Files (*.csv)"}
             };
         }
 

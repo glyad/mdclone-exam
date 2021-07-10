@@ -4,12 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:MdClone.Presentation.ViewModels"
+             xmlns:converters="clr-namespace:MdClone.Presentation.Shared.Converters;assembly=MdClone.Presentation.Shared"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModels:TableScreenViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converters:BooleanReverseConverter x:Key="BooleanReverseConverter" />
     </UserControl.Resources>
     
     <Grid>
@@ -19,13 +23,43 @@
             <ColumnDefinition Width="3*" MinWidth="400" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0" Margin="8,0,8,0">
+        <Grid Grid.Column="0" 
+              Margin="8,0,8,0" 
+              IsEnabled="{Binding Path=IsFileListUpdating, Mode=OneWay, Converter={StaticResource BooleanReverseConverter}}">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="32" />
                 <RowDefinition Height="32" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
+                <TextBlock Text="Folder:" />
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Column="0"
+                         IsReadOnly="True"
+                         VerticalAlignment="Center"
+                         Text="{Binding Path=Path, Mode=OneWay}" />
+                <Button Grid.Column="1"
+                        Margin="8,0,0,0"
+                        VerticalAlignment="Center"
+                        Content="Browse...">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                            <commanding:ExecuteCommandAction Command="{Binding Path=BrowseCommand, Mode=OneWay}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
@@ -37,6 +71,12 @@
                           ItemsSource="{Binding Path=FileTypes, Mode=OneWay}"
                           SelectedItem="{Binding Path=SelectedFileType, Mode=TwoWay}" 
                           DisplayMemberPath="DisplayName" />
+            </Grid>
+
+            <Grid Grid.Row="3" 
+                  Visibility="{Binding Path=IsFileListUpdating, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <!--<Border Background="Black" Opacity="0.4" />-->
+                <ProgressBar Height="24" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="12" IsIndeterminate="True" />
             </Grid>
         </Grid>
 
