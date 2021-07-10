@@ -47,6 +47,7 @@ namespace MdClone.Presentation.ViewModels
 
         private ICommand _closeTabCommand;
 
+        [UsedImplicitly]
         public ICommand CloseTabCommand => _closeTabCommand ??= ActionCommand<INotifyPropertyChanged>
             .When(item => true)
             .Do(item =>

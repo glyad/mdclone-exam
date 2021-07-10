@@ -5,5 +5,7 @@
         ITableDataModel CreateNewTable();
 
         IEmailModel CreateNewEmail();
+
+        IFileTypeModel[] FileTypes { get; }
     }
 }

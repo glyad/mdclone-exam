@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="MdClone.Presentation.Views.TableScreenView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:MdClone.Presentation.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModels:TableScreenViewModel}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" MaxWidth="800" />
+            <ColumnDefinition Width="8" />
+            <ColumnDefinition Width="3*" MinWidth="400" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Margin="8,0,8,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="File Type:" VerticalAlignment="Center"/>
+                <ComboBox Grid.Column="1" Margin="8, 0, 0,0"
+                          VerticalAlignment="Center"
+                          ItemsSource="{Binding Path=FileTypes, Mode=OneWay}"
+                          SelectedItem="{Binding Path=SelectedFileType, Mode=TwoWay}" 
+                          DisplayMemberPath="DisplayName" />
+            </Grid>
+        </Grid>
+
+        <GridSplitter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ResizeDirection="Columns" />
+        
+        <TextBlock Grid.Column="2" Text="No Data Laded" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+        <DataGrid Grid.Column="2"
+                  Visibility="{Binding Path=IsDataLoaded, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+    </Grid>
+</UserControl>
