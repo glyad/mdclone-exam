@@ -11,16 +11,6 @@ using MdClone.Model.Contracts;
 namespace MdClone.Presentation.ViewModels
 {
     [UsedImplicitly]
-    public class TableDataViewModel : ObjectViewModel<ITableDataModel>
-    {
-        public TableDataViewModel(ITableDataModel model)
-            : base(model)
-        {
-
-        }
-    }
-
-    [UsedImplicitly]
     public class TableScreenViewModel : Conductor<TableDataViewModel>
     {
         private readonly IDataService _dataService;
@@ -138,7 +128,9 @@ namespace MdClone.Presentation.ViewModels
             IsDataLoaded = false;
             _loadingFile = fileModel;
 
+            ActivateItem(null);
             var data = await _dataService.LoadData(fileModel);
+            ActivateItem(_viewModelCreatorService.CreateViewModel<ITableDataModel, TableDataViewModel>(data));
 
             if (_loadingFile != fileModel)
             {
