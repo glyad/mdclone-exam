@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Interactivity;
+using LogoFX.Core;
 
 namespace MdClone.Presentation.Shared.Behaviors
 {
@@ -23,14 +24,14 @@ namespace MdClone.Presentation.Shared.Behaviors
 
         private void ColumnsChanged(IEnumerable newValue, IEnumerable oldValue)
         {
-            if (oldValue is INotifyCollectionChanged oldCollection)
-            {
-                oldCollection.CollectionChanged -= ColumnsCollectionChanged;
-            }
+            //if (oldValue is INotifyCollectionChanged oldCollection)
+            //{
+            //    oldCollection.CollectionChanged -= ColumnsCollectionChanged;
+            //}
 
             if (newValue is INotifyCollectionChanged newCollection)
             {
-                newCollection.CollectionChanged += ColumnsCollectionChanged;
+                newCollection.CollectionChanged += WeakDelegate.From(ColumnsCollectionChanged);
             }
 
             UpdateColumns(newValue);
@@ -61,16 +62,6 @@ namespace MdClone.Presentation.Shared.Behaviors
         {
             get => (IEnumerable) GetValue(ColumnsProperty);
             set => SetValue(ColumnsProperty, value);
-        }
-
-        protected override void OnAttached()
-        {
-            base.OnAttached();
-        }
-
-        protected override void OnDetaching()
-        {
-            base.OnDetaching();
         }
     }
 }

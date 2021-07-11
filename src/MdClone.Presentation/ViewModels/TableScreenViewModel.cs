@@ -128,9 +128,11 @@ namespace MdClone.Presentation.ViewModels
             IsDataLoaded = false;
             _loadingFile = fileModel;
 
-            ActivateItem(null);
-
-            if (fileModel != null)
+            if (fileModel == null)
+            {
+                ActivateItem(null);
+            }
+            else
             {
                 var data = await _dataService.LoadData(fileModel);
                 ActivateItem(_viewModelCreatorService.CreateViewModel<ITableDataModel, TableDataViewModel>(data));
