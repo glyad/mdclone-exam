@@ -98,12 +98,12 @@
         
         <TextBlock Grid.Column="2" Text="No Data Loaded" VerticalAlignment="Center" HorizontalAlignment="Center" />
 
-        <ContentControl Grid.Column="2" cal:View.Model="{Binding Path=ActiveItem, Mode=OneWay}" />
+        <ContentControl Grid.Column="2" Margin="8,0" cal:View.Model="{Binding Path=ActiveItem, Mode=OneWay}" />
 
         <Grid Grid.Column="2"
               Visibility="{Binding Path=IsDataUpdating, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Border Background="Black" Opacity="0.4" />
-            <ProgressBar Height="24" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="12" IsIndeterminate="True" />
+            <ProgressBar Height="24" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="0" IsIndeterminate="True" />
         </Grid>
     </Grid>
 </UserControl>
