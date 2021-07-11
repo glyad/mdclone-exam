@@ -39,7 +39,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestData", "TestData", "{C1
 	ProjectSection(SolutionItems) = preProject
 		TestData\addresses.csv = TestData\addresses.csv
 		TestData\airtravel.csv = TestData\airtravel.csv
+		TestData\Book1.csv = TestData\Book1.csv
 		TestData\cities.csv = TestData\cities.csv
+		TestData\FX_Intensity_FederalReserve.csv = TestData\FX_Intensity_FederalReserve.csv
+		TestData\uk_political_donors.csv = TestData\uk_political_donors.csv
 	EndProjectSection
 EndProject
 Global
