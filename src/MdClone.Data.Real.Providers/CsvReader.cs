@@ -93,7 +93,7 @@ namespace MdClone.Data.Real.Providers
         {
             var lines = File.ReadLines(_filename, Encoding.UTF7).ToArray();
             Header = SplitLine(lines[0]);
-            Rows = lines.Skip(1).Select(x => new DataRow(SplitLine(x))).ToArray();
+            Rows = lines.Skip(1).Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => new DataRow(SplitLine(x))).ToArray();
         }
     }
 }
