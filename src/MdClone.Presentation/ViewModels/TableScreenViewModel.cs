@@ -117,7 +117,7 @@ namespace MdClone.Presentation.ViewModels
             {
                 if (Set(ref _selectedFile, value))
                 {
-                    LoadData(_selectedFile.Model);
+                    LoadData(_selectedFile?.Model);
                 }
             }
         }
@@ -129,8 +129,12 @@ namespace MdClone.Presentation.ViewModels
             _loadingFile = fileModel;
 
             ActivateItem(null);
-            var data = await _dataService.LoadData(fileModel);
-            ActivateItem(_viewModelCreatorService.CreateViewModel<ITableDataModel, TableDataViewModel>(data));
+
+            if (fileModel != null)
+            {
+                var data = await _dataService.LoadData(fileModel);
+                ActivateItem(_viewModelCreatorService.CreateViewModel<ITableDataModel, TableDataViewModel>(data));
+            }
 
             if (_loadingFile != fileModel)
             {
