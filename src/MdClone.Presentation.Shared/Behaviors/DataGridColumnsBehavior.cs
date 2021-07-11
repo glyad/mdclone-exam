@@ -8,7 +8,7 @@ using LogoFX.Core;
 
 namespace MdClone.Presentation.Shared.Behaviors
 {
-    public class DataGridColumnsBehavior : Behavior<DataGrid>
+    public sealed class DataGridColumnsBehavior : Behavior<DataGrid>
     {
         public static readonly DependencyProperty ColumnsProperty =
             DependencyProperty.Register(
