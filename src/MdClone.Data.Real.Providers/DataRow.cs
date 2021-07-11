@@ -1,8 +1,8 @@
 ﻿namespace MdClone.Data.Real.Providers
 {
-    internal sealed class CsvRow
+    internal readonly struct DataRow
     {
-        public CsvRow(string[] values)
+        public DataRow(string[] values)
         {
             Values = values;
         }

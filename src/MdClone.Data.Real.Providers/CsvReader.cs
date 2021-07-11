@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MdClone.Data.Real.Providers
 {
-    internal sealed class CsvReader
+    internal sealed class CsvReader : IDataReader
     {
         private const char Delimiter = ',';
 
@@ -19,7 +19,7 @@ namespace MdClone.Data.Real.Providers
 
         public string[] Header { get; private set; }
 
-        public CsvRow[] Rows { get; private set; }
+        public DataRow[] Rows { get; private set; }
 
         private string NextWord(string line, ref int index)
         {
@@ -93,7 +93,7 @@ namespace MdClone.Data.Real.Providers
         {
             var lines = File.ReadLines(_filename, Encoding.UTF7).ToArray();
             Header = SplitLine(lines[0]);
-            Rows = lines.Skip(1).Select(x => new CsvRow(SplitLine(x))).ToArray();
+            Rows = lines.Skip(1).Select(x => new DataRow(SplitLine(x))).ToArray();
         }
     }
 }

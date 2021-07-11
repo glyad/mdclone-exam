@@ -4,7 +4,7 @@ using MdClone.Data.Contracts.Providers;
 
 namespace MdClone.Data.Real.Providers
 {
-    internal class DataProvider : IDataProvider
+	internal class DataProvider : IDataProvider
     {
         public TableDataDto LoadData(string filename)
         {
