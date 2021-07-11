@@ -93,7 +93,7 @@ namespace MdClone.Presentation.ViewModels
             private set => Set(ref _isDataUpdating, value);
         }
 
-        private string _path = System.IO.Path.GetFullPath(".");
+        private string _path = System.IO.Path.GetFullPath(@"..\..\TestData");
 
         public string Path
         {
