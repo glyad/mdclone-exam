@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace MdClone.Data.Real.Providers
 {
@@ -90,7 +91,7 @@ namespace MdClone.Data.Real.Providers
 
         private void Load()
         {
-            var lines = File.ReadLines(_filename).ToArray();
+            var lines = File.ReadLines(_filename, Encoding.UTF7).ToArray();
             Header = SplitLine(lines[0]);
             Rows = lines.Skip(1).Select(x => new CsvRow(SplitLine(x))).ToArray();
         }
