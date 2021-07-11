@@ -7,6 +7,7 @@ using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using MdClone.Model.Contracts;
+using MdClone.Presentation.Properties;
 
 namespace MdClone.Presentation.ViewModels
 {
@@ -39,6 +40,8 @@ namespace MdClone.Presentation.ViewModels
                     return fileViewModel;
                 }
             };
+
+            _path = System.IO.Path.GetFullPath(Settings.Default.Path);
 
             if (FileTypes.Length > 0)
             {
@@ -93,7 +96,7 @@ namespace MdClone.Presentation.ViewModels
             private set => Set(ref _isDataUpdating, value);
         }
 
-        private string _path = System.IO.Path.GetFullPath(@"..\..\TestData");
+        private string _path;
 
         public string Path
         {
@@ -103,6 +106,8 @@ namespace MdClone.Presentation.ViewModels
                 if (Set(ref _path, value))
                 {
                     UpdateFileList();
+                    Settings.Default.Path = _path;
+                    Settings.Default.Save();
                 }
             }
         }
