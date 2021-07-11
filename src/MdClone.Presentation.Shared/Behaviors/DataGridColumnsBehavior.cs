@@ -1,15 +1,43 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Specialized;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Interactivity;
+using System.Windows.Markup;
 using LogoFX.Core;
 
 namespace MdClone.Presentation.Shared.Behaviors
 {
-    public class DataGridColumnsBehavior : Behavior<DataGrid>
+    public sealed class DataGridColumnsBehavior : Behavior<DataGrid>
     {
+        private sealed class RowToIndexConverter : MarkupExtension, IValueConverter
+        {
+            static RowToIndexConverter _converter;
+
+            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                if (value is DataGridRow row)
+                {
+                    return row.GetIndex() + 1;
+                } 
+                
+                return -1;
+            }
+
+            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override object ProvideValue(IServiceProvider serviceProvider)
+            {
+                return _converter ?? (_converter = new RowToIndexConverter());
+            }
+        }
+
         public static readonly DependencyProperty ColumnsProperty =
             DependencyProperty.Register(
                 "Columns",
@@ -37,9 +65,26 @@ namespace MdClone.Presentation.Shared.Behaviors
             UpdateColumns(newValue);
         }
 
+        private void AddIndexColumn()
+        {
+            var dataGridColumn = new DataGridTextColumn
+            {
+                Header = "#",
+                CanUserSort = false,
+                Binding = new Binding()
+                {
+                    RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(DataGridRow), 1),
+                    Converter = new RowToIndexConverter()
+                }
+            };
+
+            AssociatedObject.Columns.Add(dataGridColumn);
+        }
+
         private void UpdateColumns(IEnumerable columns)
         {
             AssociatedObject.Columns.Clear();
+            AddIndexColumn();
             var index = 0;
             foreach (var column in columns)
             {

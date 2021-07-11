@@ -7,7 +7,6 @@
              xmlns:converters="clr-namespace:MdClone.Presentation.Shared.Converters;assembly=MdClone.Presentation.Shared"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
-             xmlns:behaviors="clr-namespace:MdClone.Presentation.Shared.Behaviors;assembly=MdClone.Presentation.Shared"
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModels:TableScreenViewModel}"
