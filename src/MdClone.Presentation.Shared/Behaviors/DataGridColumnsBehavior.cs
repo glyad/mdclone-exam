@@ -8,6 +8,7 @@ using System.Windows.Data;
 using System.Windows.Interactivity;
 using System.Windows.Markup;
 using LogoFX.Core;
+using MahApps.Metro.Controls;
 
 namespace MdClone.Presentation.Shared.Behaviors
 {
@@ -21,7 +22,8 @@ namespace MdClone.Presentation.Shared.Behaviors
             {
                 if (value is DataGridRow row)
                 {
-                    return row.GetIndex() + 1;
+                    var dataGrid = row.TryFindParent<DataGrid>();
+                    return dataGrid.Items.IndexOf(row.Item) + 1;
                 } 
                 
                 return -1;
@@ -84,7 +86,7 @@ namespace MdClone.Presentation.Shared.Behaviors
         private void UpdateColumns(IEnumerable columns)
         {
             AssociatedObject.Columns.Clear();
-            AddIndexColumn();
+            // AddIndexColumn();
             var index = 0;
             foreach (var column in columns)
             {
