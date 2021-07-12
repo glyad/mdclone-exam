@@ -4,19 +4,21 @@ using MdClone.Data.Contracts.Providers;
 namespace MdClone.Data.Real.Providers
 {
 	
-	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-	internal class ProvidesAttribute : Attribute
+	[AttributeUsage(AttributeTargets.Class, Inherited = false)]
+	internal sealed class ProvidesAttribute : Attribute
 	{
 		
-		internal ProvidesAttribute(SupportedFormats format, params string[] fileExtensions)
-		{
+		public ProvidesAttribute(string name, SupportedFormats format, params string[] fileExtensions)
+        {
+            Name = name;
 			Format = format;
 			FileExtensions = fileExtensions;
 		}
+        public string Name { get; }
 
-		internal SupportedFormats Format { get; } 
+		public SupportedFormats Format { get; }
 
-		internal string[] FileExtensions { get; }
+        public string[] FileExtensions { get; }
 	}
 
 }

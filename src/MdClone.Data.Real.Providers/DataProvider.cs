@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using JetBrains.Annotations;
 using MdClone.Data.Contracts.Dto;
@@ -11,10 +12,24 @@ namespace MdClone.Data.Real.Providers
 	internal class DataProvider : IDataProvider
     {
 	    public IEnumerable<ISupportedFormatInfo> GetSupportedFormats()
-	    {
-            //Assembly.GetAssembly(GetType()).GetTypes().Where(type => type.FindInterfaces((filtered, criteria) => ))
-		    throw new System.NotImplementedException();
-	    }
+        {
+            var types = Assembly.GetAssembly(GetType())
+                .GetTypes()
+                .Where(type => type.GetInterfaces().Any(i => i == typeof(IDataReader)))
+                .Where(type => type.GetCustomAttribute<ProvidesAttribute>() != null)
+                .ToArray();
+
+            return types.Select(type =>
+            {
+                var attr = type.GetCustomAttribute<ProvidesAttribute>();
+                return new SupportedFormatInfo
+                {
+                    SupportedFormatName = attr.Name,
+                    SupportedFormatKey = attr.Format,
+                    AllowedFileExtensions = attr.FileExtensions
+                };
+            });
+        }
 
 	    public TableDataDto LoadData(string filename)
         {

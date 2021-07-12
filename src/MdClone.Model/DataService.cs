@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using MdClone.Data.Contracts.Providers;
 using MdClone.Model.Contracts;
@@ -11,17 +12,13 @@ namespace MdClone.Model
         private readonly IDataProvider _dataProvider;
         private readonly TableDataModelMapper _tableDataModelMapper;
         private readonly EmailModelMapper _emailModelMapper;
-        private readonly IFileTypeModel[] _fileTypes;
+        private IFileTypeModel[] _fileTypes;
 
         public DataService(IDataProvider dataProvider, TableDataModelMapper tableDataModelMapper, EmailModelMapper emailModelMapper)
         {
             _dataProvider = dataProvider;
             _tableDataModelMapper = tableDataModelMapper;
             _emailModelMapper = emailModelMapper;
-            _fileTypes = new IFileTypeModel[]
-            {
-                new FileTypeModel {Filter = "*.csv", DisplayName = "CSV Files (*.csv)"}
-            };
         }
 
         IEmailModel IDataService.CreateNewEmail()
@@ -39,6 +36,15 @@ namespace MdClone.Model
             return Task.Run(() => _dataProvider.SendEmail(_emailModelMapper.MapToDto(emailModel)), ct);
         }
 
-        IFileTypeModel[] IDataService.FileTypes => _fileTypes;
+        IFileTypeModel[] IDataService.FileTypes => _fileTypes = _fileTypes ?? GenerateFileTypes();
+
+        private IFileTypeModel[] GenerateFileTypes() =>
+            _dataProvider.GetSupportedFormats()
+                .Select(info => new FileTypeModel
+                {
+                    DisplayName = info.SupportedFormatName,
+                    Filter = string.Join(";", info.AllowedFileExtensions)
+                } as IFileTypeModel)
+                .ToArray();
     }
 }

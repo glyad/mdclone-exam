@@ -6,7 +6,7 @@ using MdClone.Data.Contracts.Providers;
 
 namespace MdClone.Data.Real.Providers
 {
-    [Provides(SupportedFormats.Csv, "*.csv")]
+    [Provides("Comma-separated values", SupportedFormats.Csv, "*.csv")]
     internal sealed class CsvReader : IDataReader
     {
         private const char Delimiter = ',';
