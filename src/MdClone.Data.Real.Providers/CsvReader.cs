@@ -2,9 +2,11 @@
 using System.IO;
 using System.Linq;
 using System.Text;
+using MdClone.Data.Contracts.Providers;
 
 namespace MdClone.Data.Real.Providers
 {
+    [Provides(SupportedFormats.Csv, "*.csv")]
     internal sealed class CsvReader : IDataReader
     {
         private const char Delimiter = ',';
