@@ -60,9 +60,9 @@ namespace MdClone.Presentation.ViewModels
             set { }
         }
 
-        protected override void OnActivate()
+        protected override void OnInitialize()
         {
-            base.OnActivate();
+            base.OnInitialize();
 
             var emailModel = _dataService.CreateNewEmail();
             var emailViewModel = _viewModelCreatorService.CreateViewModel<IEmailModel, EmailViewModel>(emailModel);
