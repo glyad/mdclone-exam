@@ -26,8 +26,8 @@
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <ListBox Grid.Column="0"
@@ -51,6 +51,8 @@
 
                             <Button Grid.Column="1"
                                     Style="{DynamicResource MahApps.Styles.Button.Circle}"
+                                    BorderThickness="0"
+                                    ToolTip="Close"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"
                                     Margin="0"
@@ -62,7 +64,7 @@
                                                             VerticalAlignment="Center"
                                                             HorizontalAlignment="Center" />
                                 <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                                    <i:EventTrigger EventName="Click">
                                         <commanding:ExecuteNamedCommandAction CommandName="CloseTabCommand"
                                                                               Parameter="{Binding}"
                                                                               ManageEnableState="True" />
@@ -75,18 +77,42 @@
             </ListBox>
 
             <Button Grid.Column="1"
-                    Content="Add Table"
+                    Style="{DynamicResource MahApps.Styles.Button.Circle}"
+                    ToolTip="Add Table"
                     Height="28"
+                    Width="28"
                     Margin="0,4,0,0"
-                    VerticalAlignment="Top"
-                    Command="{Binding Path=AddTableCommand, Mode=OneWay}" />
+                    VerticalAlignment="Top">
+                <iconPacks:PackIconMaterial Kind="Grid"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center" />
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <commanding:ExecuteNamedCommandAction CommandName="AddTableCommand"
+                                                              Parameter="{Binding}"
+                                                              ManageEnableState="True" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
 
             <Button Grid.Column="2"
+                    Style="{DynamicResource MahApps.Styles.Button.Circle}"
                     Margin="8,4,0,0"
-                    Content="Add E-Mail"
+                    ToolTip="Add E-Mail"
                     Height="28"
-                    VerticalAlignment="Top"
-                    Command="{Binding Path=AddEmailCommand, Mode=OneWay}" />
+                    Width="28"
+                    VerticalAlignment="Top">
+                <iconPacks:PackIconMaterial Kind="Email"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center" />
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <commanding:ExecuteNamedCommandAction CommandName="AddEmailCommand"
+                                                              Parameter="{Binding}"
+                                                              ManageEnableState="True" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
         </Grid>
 
         <Grid Grid.Row="1">

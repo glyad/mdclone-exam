@@ -8,6 +8,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
              xmlns:cal="http://www.caliburnproject.org"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModels:TableScreenViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -51,7 +52,11 @@
                 <Button Grid.Column="1"
                         Margin="8,0,0,0"
                         VerticalAlignment="Center"
-                        Content="Browse...">
+                        ToolTip="Browse for data folder">
+                    <iconPacks:PackIconMaterial Kind="FolderOpen"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center" />
+
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
                             <commanding:ExecuteCommandAction Command="{Binding Path=BrowseCommand, Mode=OneWay}" />
