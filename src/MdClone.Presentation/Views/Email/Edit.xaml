@@ -18,13 +18,25 @@
             <Style TargetType="TextBox">
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="Margin" Value="8,0,0,0" />
+                <Setter Property="Validation.ErrorTemplate">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <DockPanel>
+                                <TextBlock Text="{Binding ErrorContent}" DockPanel.Dock="Bottom" Foreground="Red"/>
+                                <Border BorderBrush="Red" BorderThickness="2">
+                                    <AdornedElementPlaceholder/>
+                                </Border>
+                            </DockPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
         </Grid.Resources>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="32" />
-            <RowDefinition Height="32" />
-            <RowDefinition Height="32" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
             <RowDefinition Height="*" />
             <RowDefinition Height="32" />
         </Grid.RowDefinitions>
@@ -43,7 +55,7 @@
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Subject" />
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Model.Subject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,8,0,0">
             <RichTextBox Margin="8,0,0,0">
             </RichTextBox>
         </Grid>

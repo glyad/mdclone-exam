@@ -20,7 +20,7 @@ namespace MdClone.Model.Validation
             
             if (!isValid)
             {
-                return new ValidationResult("Provider string is not presented a e-mail address.");
+                return new ValidationResult("E-mail address is not valid.");
             }
 
             return ValidationResult.Success;
