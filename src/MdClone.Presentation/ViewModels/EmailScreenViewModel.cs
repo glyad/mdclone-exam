@@ -15,12 +15,12 @@ namespace MdClone.Presentation.ViewModels
     [UsedImplicitly]
     public class EmailScreenViewModel : Conductor<EmailViewModel>
     {
-        private readonly IDataService _dataService;
+        private readonly IEmailService _emailService;
         private readonly IViewModelCreatorService _viewModelCreatorService;
 
-        public EmailScreenViewModel(IDataService dataService, IViewModelCreatorService viewModelCreatorService)
+        public EmailScreenViewModel(IEmailService emailService, IViewModelCreatorService viewModelCreatorService)
         {
-            _dataService = dataService;
+            _emailService = emailService;
             _viewModelCreatorService = viewModelCreatorService;
         }
 
@@ -64,7 +64,7 @@ namespace MdClone.Presentation.ViewModels
         {
             base.OnInitialize();
 
-            var emailModel = _dataService.CreateNewEmail();
+            var emailModel = _emailService.CreateNewEmail();
             var emailViewModel = _viewModelCreatorService.CreateViewModel<IEmailModel, EmailViewModel>(emailModel);
             ActivateItem(emailViewModel);
         }

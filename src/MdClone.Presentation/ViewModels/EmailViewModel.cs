@@ -8,12 +8,12 @@ namespace MdClone.Presentation.ViewModels
     [UsedImplicitly]
     public class EmailViewModel : EditableObjectViewModel<IEmailModel>
     {
-        private readonly IDataService _dataService;
+        private readonly IEmailService _emailService;
 
-        public EmailViewModel(IEmailModel model, IDataService dataService) 
+        public EmailViewModel(IEmailModel model, IEmailService emailService) 
             : base(model)
         {
-            _dataService = dataService;
+            _emailService = emailService;
         }
 
         private bool _isActiveSaving;
@@ -32,7 +32,7 @@ namespace MdClone.Presentation.ViewModels
                 await Task.Delay(100);
             }
 
-            await _dataService.SendEmail(model);
+            await _emailService.SendEmail(model);
 
             return true;
         }

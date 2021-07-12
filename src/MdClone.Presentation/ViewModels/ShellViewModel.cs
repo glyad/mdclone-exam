@@ -4,21 +4,16 @@ using Caliburn.Micro;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel.Services;
-using MdClone.Model.Contracts;
 
 namespace MdClone.Presentation.ViewModels
 {
     [UsedImplicitly]
     public class ShellViewModel : Conductor<INotifyPropertyChanged>.Collection.OneActive
     {
-        private readonly IDataService _dataService;
         private readonly IViewModelCreatorService _viewModelCreatorService;
 
-        public ShellViewModel(
-            IDataService dataService,
-            IViewModelCreatorService viewModelCreatorService)
+        public ShellViewModel(IViewModelCreatorService viewModelCreatorService)
         {
-            _dataService = dataService;
             _viewModelCreatorService = viewModelCreatorService;
         }
 
@@ -28,9 +23,7 @@ namespace MdClone.Presentation.ViewModels
             .When(() => true)
             .Do(() =>
             {
-                var model = _dataService.CreateNewEmail();
                 var vm = _viewModelCreatorService.CreateViewModel<EmailScreenViewModel>();
-                vm.ActivateItem(_viewModelCreatorService.CreateViewModel<IEmailModel, EmailViewModel>(model));
                 ActivateItem(vm);
             });
 

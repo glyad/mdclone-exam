@@ -63,6 +63,7 @@
     <Compile Include="CsvReader.cs" />
     <Compile Include="DataRow.cs" />
     <Compile Include="DataProvider.cs" />
+    <Compile Include="EmailProvider.cs" />
     <Compile Include="IDataReader.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

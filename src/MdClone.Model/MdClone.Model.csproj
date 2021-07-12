@@ -62,6 +62,7 @@
     <Compile Include="AppModel.cs" />
     <Compile Include="DataService.cs" />
     <Compile Include="EmailModel.cs" />
+    <Compile Include="EmailService.cs" />
     <Compile Include="FileModel.cs" />
     <Compile Include="FileSearchService.cs" />
     <Compile Include="FileTypeModel.cs" />

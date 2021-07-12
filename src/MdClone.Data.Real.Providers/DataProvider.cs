@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
 using JetBrains.Annotations;
 using MdClone.Data.Contracts.Dto;
 using MdClone.Data.Contracts.Providers;
@@ -9,7 +8,7 @@ using MdClone.Data.Contracts.Providers;
 namespace MdClone.Data.Real.Providers
 {
 	[UsedImplicitly]
-	internal class DataProvider : IDataProvider
+	internal sealed class DataProvider : IDataProvider
     {
 	    public IEnumerable<ISupportedFormatInfo> GetSupportedFormats()
         {
@@ -51,11 +50,6 @@ namespace MdClone.Data.Real.Providers
             };
 
             return result;
-        }
-
-        public void SendEmail(EmailDto emailDto)
-        {
-            Thread.Sleep(4000);
         }
     }
 }

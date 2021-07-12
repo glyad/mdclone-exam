@@ -5,11 +5,7 @@ namespace MdClone.Model.Contracts
 {
     public interface IDataService
     {
-        IEmailModel CreateNewEmail();
-
         Task<ITableDataModel> LoadData(IFileModel fileModel, CancellationToken ct = default);
-
-        Task SendEmail(IEmailModel emailModel, CancellationToken ct = default);
 
         IFileTypeModel[] FileTypes { get; }
     }

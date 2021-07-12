@@ -8,7 +8,5 @@ namespace MdClone.Data.Contracts.Providers
 		IEnumerable<ISupportedFormatInfo> GetSupportedFormats();
 
         TableDataDto LoadData(string filename);
-
-        void SendEmail(EmailDto emailDto);
     }
 }
