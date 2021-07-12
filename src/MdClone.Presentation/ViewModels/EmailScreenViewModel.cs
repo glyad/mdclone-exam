@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Caliburn.Micro;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.Commanding;
+using LogoFX.Client.Mvvm.Model.Contracts;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using MdClone.Model.Contracts;
 
@@ -26,7 +27,7 @@ namespace MdClone.Presentation.ViewModels
 
         [UsedImplicitly]
         public ICommand SendEmailCommand => _sendEmailCommand ??= ActionCommand<IEmailModel>
-            .When(_ => Editable && !IsEmailSending)
+            .When(model => Editable && !IsEmailSending && !((IHaveErrors) model).HasErrors)
             .Do(SendEmail)
             .RequeryOnPropertyChanged(this, () => Editable)
             .RequeryOnPropertyChanged(this, () => IsEmailSending);
