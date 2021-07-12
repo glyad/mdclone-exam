@@ -1,12 +1,22 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using JetBrains.Annotations;
 using MdClone.Data.Contracts.Dto;
 using MdClone.Data.Contracts.Providers;
 
 namespace MdClone.Data.Real.Providers
 {
+	[UsedImplicitly]
 	internal class DataProvider : IDataProvider
     {
-        public TableDataDto LoadData(string filename)
+	    public IEnumerable<ISupportedFormatInfo> GetSupportedFormats()
+	    {
+            //Assembly.GetAssembly(GetType()).GetTypes().Where(type => type.FindInterfaces((filtered, criteria) => ))
+		    throw new System.NotImplementedException();
+	    }
+
+	    public TableDataDto LoadData(string filename)
         {
             var csv = new CsvReader(filename);
 
