@@ -9,6 +9,7 @@
                  xmlns:cal="http://www.caliburnproject.org"
                  xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                  xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
+                 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                  mc:Ignorable="d"
                  d:DataContext="{d:DesignInstance viewModels:ShellViewModel}"
                  Height="450"
@@ -49,12 +50,17 @@
                                             cal:View.Context="Header" />
 
                             <Button Grid.Column="1"
-                                    Content="x"
+                                    Style="{DynamicResource MahApps.Styles.Button.Circle}"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"
                                     Margin="0"
                                     Width="24"
                                     Height="24">
+                                <iconPacks:PackIconMaterial Kind="Close"
+                                                            Width="12"
+                                                            Height="12"
+                                                            VerticalAlignment="Center"
+                                                            HorizontalAlignment="Center" />
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
                                         <commanding:ExecuteNamedCommandAction CommandName="CloseTabCommand"
