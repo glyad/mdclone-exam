@@ -17,7 +17,7 @@
 
     <Grid Margin="12">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="0" />
         </Grid.RowDefinitions>
@@ -30,12 +30,13 @@
             </Grid.ColumnDefinitions>
 
             <ListBox Grid.Column="0"
+                     Margin="0,0,12,0"
                      Style="{StaticResource TabListBoxStyle}"
                      ItemsSource="{Binding Path=Items, Mode=OneWay}"
                      SelectedValue="{Binding Path=ActiveItem, Mode=TwoWay}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
+                        <Grid Height="32">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="32" />
@@ -69,10 +70,16 @@
 
             <Button Grid.Column="1"
                     Content="Add Table"
+                    Height="28"
+                    Margin="0,4,0,0"
+                    VerticalAlignment="Top"
                     Command="{Binding Path=AddTableCommand, Mode=OneWay}" />
 
             <Button Grid.Column="2"
+                    Margin="8,4,0,0"
                     Content="Add E-Mail"
+                    Height="28"
+                    VerticalAlignment="Top"
                     Command="{Binding Path=AddEmailCommand, Mode=OneWay}" />
         </Grid>
 
