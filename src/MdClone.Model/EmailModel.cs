@@ -13,14 +13,14 @@ namespace MdClone.Model
         private string _subject;
         private byte[] _message;
 
-        [StringValidation(IsNulOrEmptyAllowed = false, MaxLength = 63)]
+        [EmailValidation]
         public string To
         {
             get => _to;
             set => SetProperty(ref _to, value);
         }
 
-        [StringValidation(IsNulOrEmptyAllowed = false, MaxLength = 63)]
+        [StringValidation(IsNulOrEmptyAllowed = true, MaxLength = 63)]
         public string Cc
         {
             get => _cc;

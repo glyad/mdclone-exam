@@ -35,13 +35,13 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0" Text="To" />
-        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Model.To, Mode=TwoWay}" />
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Model.To, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Cc" />
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Model.Cc, Mode=TwoWay}" />
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Model.Cc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Subject" />
-        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Model.Subject, Mode=TwoWay}" />
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Model.Subject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
             <RichTextBox Margin="8,0,0,0">

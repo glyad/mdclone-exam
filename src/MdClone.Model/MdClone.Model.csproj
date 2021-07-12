@@ -75,6 +75,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RowDataModel.cs" />
     <Compile Include="TableDataModel.cs" />
+    <Compile Include="Validation\EmailValidationAttribute.cs" />
     <Compile Include="Validation\StringValidationAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
