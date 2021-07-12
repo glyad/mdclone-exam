@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\DataGridColumnsBehavior.cs" />
+    <Compile Include="Behaviors\RichTextBoxBehavior.cs" />
     <Compile Include="Converters\BooleanReverseConverter.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

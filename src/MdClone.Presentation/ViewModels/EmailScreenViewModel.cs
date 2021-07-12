@@ -6,6 +6,7 @@ using Caliburn.Micro;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.Model.Contracts;
+using LogoFX.Client.Mvvm.ViewModel.Extensions;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using MdClone.Model.Contracts;
 
@@ -32,12 +33,9 @@ namespace MdClone.Presentation.ViewModels
             .RequeryOnPropertyChanged(this, () => Editable)
             .RequeryOnPropertyChanged(this, () => IsEmailSending);
 
-        private async void SendEmail(IEmailModel model)
+        private  void SendEmail(IEmailModel model)
         {
-            IsEmailSending = true;
-            await _dataService.SendEmail(model);
-            Editable = false;
-            IsEmailSending = false;
+            ActiveItem.ApplyCommand.Execute(null);
         }
 
         private bool _editable = true;
@@ -69,6 +67,31 @@ namespace MdClone.Presentation.ViewModels
             var emailModel = _dataService.CreateNewEmail();
             var emailViewModel = _viewModelCreatorService.CreateViewModel<IEmailModel, EmailViewModel>(emailModel);
             ActivateItem(emailViewModel);
+        }
+
+        public override void ActivateItem(EmailViewModel item)
+        {
+            base.ActivateItem(item);
+            item.Saving += OnSaving;
+            item.Saved += OnSaved;
+        }
+
+        public override void DeactivateItem(EmailViewModel item, bool close)
+        {
+            item.Saving -= OnSaving;
+            item.Saved -= OnSaved;
+            base.DeactivateItem(item, close);
+        }
+
+        private void OnSaved(object sender, ResultEventArgs e)
+        {
+            Editable = false;
+            IsEmailSending = false;
+        }
+
+        private void OnSaving(object sender, EventArgs e)
+        {
+            IsEmailSending = true;
         }
     }
 

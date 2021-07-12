@@ -8,13 +8,33 @@ namespace MdClone.Presentation.ViewModels
     [UsedImplicitly]
     public class EmailViewModel : EditableObjectViewModel<IEmailModel>
     {
-        public EmailViewModel(IEmailModel model) : base(model)
+        private readonly IDataService _dataService;
+
+        public EmailViewModel(IEmailModel model, IDataService dataService) 
+            : base(model)
         {
+            _dataService = dataService;
         }
 
-        protected override Task<bool> SaveMethod(IEmailModel model)
+        private bool _isActiveSaving;
+
+        public bool IsActiveSaving
         {
-            throw new System.NotImplementedException();
+            get => _isActiveSaving;
+            set => SetProperty(ref _isActiveSaving, value);
+        }
+
+        protected override async Task<bool> SaveMethod(IEmailModel model)
+        {
+            IsActiveSaving = true;
+            while (IsActiveSaving)
+            {
+                await Task.Delay(100);
+            }
+
+            await _dataService.SendEmail(model);
+
+            return true;
         }
     }
 }
