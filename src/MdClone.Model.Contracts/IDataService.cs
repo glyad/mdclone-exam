@@ -9,6 +9,8 @@ namespace MdClone.Model.Contracts
 
         Task<ITableDataModel> LoadData(IFileModel fileModel, CancellationToken ct = default);
 
+        Task SendEmail(IEmailModel emailModel, CancellationToken ct = default);
+
         IFileTypeModel[] FileTypes { get; }
     }
 }

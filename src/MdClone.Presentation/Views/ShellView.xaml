@@ -14,6 +14,8 @@
                  d:DataContext="{d:DesignInstance viewModels:ShellViewModel}"
                  Height="450"
                  Width="800"
+                 MinHeight="450"
+                 MinWidth="800"
                  WindowState="Maximized">
 
     <Grid Margin="12">
@@ -88,9 +90,9 @@
                                             HorizontalAlignment="Center" />
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <commanding:ExecuteNamedCommandAction CommandName="AddTableCommand"
-                                                              Parameter="{Binding}"
-                                                              ManageEnableState="True" />
+                        <commanding:ExecuteCommandAction Command="{Binding Path=AddTableCommand, Mode=OneWay}"
+                                                         Parameter="{Binding}"
+                                                         ManageEnableState="True" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
@@ -107,9 +109,9 @@
                                             HorizontalAlignment="Center" />
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <commanding:ExecuteNamedCommandAction CommandName="AddEmailCommand"
-                                                              Parameter="{Binding}"
-                                                              ManageEnableState="True" />
+                        <commanding:ExecuteCommandAction Command="{Binding Path=AddEmailCommand, Mode=OneWay}"
+                                                         Parameter="{Binding}"
+                                                         ManageEnableState="True" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>

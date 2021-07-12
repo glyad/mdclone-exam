@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading;
 using MdClone.Data.Contracts.Dto;
 using MdClone.Data.Contracts.Providers;
 
@@ -26,6 +27,11 @@ namespace MdClone.Data.Real.Providers
             };
 
             return result;
+        }
+
+        public void SendEmail(EmailDto emailDto)
+        {
+            Thread.Sleep(4000);
         }
     }
 }

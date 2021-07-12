@@ -9,6 +9,7 @@
              xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModels:TableScreenViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -92,10 +93,12 @@
                 </ListBox>
             </Grid>
 
-            <Grid Grid.Row="3" 
+            <Grid Grid.Row="3"
                   Visibility="{Binding Path=IsFileListUpdating, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <!--<Border Background="Black" Opacity="0.4" />-->
-                <ProgressBar Height="24" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="12" IsIndeterminate="True" />
+                <mah:ProgressRing Foreground="{DynamicResource AccentColorBrush}"
+                                  IsActive="True" />
+                <!--<ProgressBar Height="24" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="12" IsIndeterminate="True" />-->
             </Grid>
         </Grid>
 
