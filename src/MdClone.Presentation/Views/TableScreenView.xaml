@@ -88,8 +88,7 @@
 
             <Grid Grid.Row="3"
                   Visibility="{Binding Path=IsFileListUpdating, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <!--<mah:ProgressRing Foreground="{DynamicResource AccentColorBrush}"
-                                  IsActive="True" />-->
+                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" IsIndeterminate="True" Width="50" />
             </Grid>
         </Grid>
 

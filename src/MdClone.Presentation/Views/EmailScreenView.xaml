@@ -21,8 +21,7 @@
 
         <Grid Visibility="{Binding Path=IsEmailSending, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Border Background="Black" Opacity="0.4" />
-            <!--<mah:ProgressRing Foreground="{DynamicResource AccentColorBrush}"
-                              IsActive="True" />-->
+            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" IsIndeterminate="True" Width="50" />
         </Grid>
     </Grid>
 </UserControl>
