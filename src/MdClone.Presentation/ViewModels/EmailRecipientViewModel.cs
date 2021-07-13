@@ -10,5 +10,10 @@ namespace MdClone.Presentation.ViewModels
         {
 
         }
+
+        public override string ToString()
+        {
+            return Model.Address;
+        }
     }
 }

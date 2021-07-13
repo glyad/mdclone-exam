@@ -4,10 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:MdClone.Presentation.ViewModels"
+             xmlns:controls="clr-namespace:MdClone.Presentation.Shared.Controls;assembly=MdClone.Presentation.Shared"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:RecipientsViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBox Text="{Binding Path=Text, Mode=TwoWay}" />
+        <controls:ItemsTextBoxControl AutocompleteItemsSource="{Binding Path=Recipients, Mode=OneWay}"
+                                      ItemsSource="{Binding Path=SelectedRecipients, Mode=OneWay}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid MinHeight="24" MinWidth="80">
+                        <TextBlock Foreground="Black" VerticalAlignment="Center" FontSize="14" Text="{Binding Path=Model.Address, Mode=OneWay}" />
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </controls:ItemsTextBoxControl>
     </Grid>
 </UserControl>

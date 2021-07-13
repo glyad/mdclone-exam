@@ -52,9 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\DataGridColumnsBehavior.cs" />
+    <Compile Include="Behaviors\FocusBehavior.cs" />
     <Compile Include="Behaviors\RichTextBoxBehavior.cs" />
+    <Compile Include="Controls\ItemsTextBoxControl.cs" />
+    <Compile Include="Controls\ItemsTextBoxPanel.cs" />
     <Compile Include="Controls\NotificationControlItem.cs" />
     <Compile Include="Converters\BooleanReverseConverter.cs" />
+    <Compile Include="Helpers\SizeObserver.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Controls\NotificationControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -89,6 +93,10 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ItemsTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\ListBox.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.ViewModel;
 using LogoFX.Client.Mvvm.ViewModel.Services;
@@ -22,17 +23,12 @@ namespace MdClone.Presentation.ViewModels
             _viewModelCreatorService = viewModelCreatorService;
         }
 
-        private string _text;
-
-        public string Text
-        {
-            get => _text;
-            set => SetProperty(ref _text, value);
-        }
-
         private WrappingCollection _recipients;
 
         public IEnumerable Recipients => _recipients ??= CreateRecipients();
+
+        private List<EmailRecipientViewModel> _selectedRecipients = new List<EmailRecipientViewModel>();
+        public IEnumerable SelectedRecipients => _selectedRecipients;
 
         private WrappingCollection CreateRecipients()
         {
