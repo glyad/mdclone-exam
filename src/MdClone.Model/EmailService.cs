@@ -19,7 +19,8 @@ namespace MdClone.Model
 
         IEmailModel IEmailService.CreateNewEmail()
         {
-            return new EmailModel();
+            var emailModel = new EmailModel();
+            return emailModel;
         }
 
         Task IEmailService.SendEmail(IEmailModel emailModel, CancellationToken ct)
