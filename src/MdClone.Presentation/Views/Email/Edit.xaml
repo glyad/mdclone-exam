@@ -9,6 +9,7 @@
              xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
              xmlns:behaviors="clr-namespace:MdClone.Presentation.Shared.Behaviors;assembly=MdClone.Presentation.Shared"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:EmailViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -50,10 +51,14 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0" Text="To" />
-        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Model.To, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <ContentControl Grid.Row="0"
+                        Grid.Column="1"
+                        cal:View.Model="{Binding Path=To, Mode=OneWay}" />
 
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Cc" />
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Model.Cc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <ContentControl Grid.Row="1"
+                        Grid.Column="1"
+                        cal:View.Model="{Binding Path=Cc, Mode=OneWay}" />
 
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Subject" />
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Model.Subject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />

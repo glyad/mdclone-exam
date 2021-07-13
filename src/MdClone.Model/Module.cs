@@ -23,6 +23,7 @@ namespace MdClone.Model
             var mapper = config.CreateMapper();
             dependencyRegistrator
                 .AddInstance(mapper)
+                .AddSingleton<EmailRecipientModelMapper>()
                 .AddSingleton<EmailModelMapper>()
                 .AddSingleton<FileModelMapper>()
                 .AddSingleton<RowDataModelMapper>()

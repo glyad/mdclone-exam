@@ -23,6 +23,7 @@ namespace MdClone.Model.Mappers
 
         private void CreateEMailMaps()
         {
+            CreateDomainObjectMap<EmailRecipientDto, IEmailRecipientModel, EmailRecipientModel>();
             CreateDomainObjectMap<EmailDto, IEmailModel, EmailModel>();
         }
 

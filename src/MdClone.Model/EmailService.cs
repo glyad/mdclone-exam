@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using MdClone.Data.Contracts.Providers;
 using MdClone.Model.Contracts;
@@ -10,11 +11,13 @@ namespace MdClone.Model
     {
         private readonly IEmailProvider _emailProvider;
         private readonly EmailModelMapper _emailModelMapper;
+        private readonly EmailRecipientModelMapper _emailRecipientModelMapper;
 
-        public EmailService(IEmailProvider emailProvider, EmailModelMapper emailModelMapper)
+        public EmailService(IEmailProvider emailProvider, EmailModelMapper emailModelMapper, EmailRecipientModelMapper emailRecipientModelMapper)
         {
             _emailProvider = emailProvider;
             _emailModelMapper = emailModelMapper;
+            _emailRecipientModelMapper = emailRecipientModelMapper;
         }
 
         IEmailModel IEmailService.CreateNewEmail()
@@ -26,6 +29,11 @@ namespace MdClone.Model
         Task IEmailService.SendEmail(IEmailModel emailModel, CancellationToken ct)
         {
             return Task.Run(() => _emailProvider.SendEmail(_emailModelMapper.MapToDto(emailModel)), ct);
+        }
+
+        Task<IEmailRecipientModel[]> IEmailService.GetRecipients(CancellationToken ct)
+        {
+            return Task.Run(() => _emailProvider.GetRecipients().Select(dto => _emailRecipientModelMapper.MapToModel(dto)).ToArray(), ct);
         }
     }
 }
