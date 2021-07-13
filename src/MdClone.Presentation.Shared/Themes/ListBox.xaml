@@ -7,6 +7,7 @@
 
     <Style x:Key="TabListBoxStyle" TargetType="ListBox">
         <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
