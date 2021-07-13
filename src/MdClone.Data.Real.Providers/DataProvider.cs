@@ -21,12 +21,7 @@ namespace MdClone.Data.Real.Providers
             return types.Select(type =>
             {
                 var attr = type.GetCustomAttribute<ProvidesAttribute>();
-                return new SupportedFormatInfo
-                {
-                    SupportedFormatName = attr.Name,
-                    SupportedFormatKey = attr.Format,
-                    AllowedFileExtensions = attr.FileExtensions
-                };
+                return new SupportedFormatInfo(attr.Format, attr.Name, attr.FileExtensions);
             });
         }
 
