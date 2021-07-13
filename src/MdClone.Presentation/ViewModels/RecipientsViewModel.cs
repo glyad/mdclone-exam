@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.ViewModel;
 using LogoFX.Client.Mvvm.ViewModel.Services;
@@ -19,15 +22,32 @@ namespace MdClone.Presentation.ViewModels
             IViewModelCreatorService viewModelCreatorService)
             : base(model)
         {
+            if (model != null)
+            {
+                _selectedRecipients.AddRange(model.Select(x => _viewModelCreatorService.CreateViewModel<IEmailRecipientModel, EmailRecipientViewModel>(x)));
+            }
             _emailService = emailService;
             _viewModelCreatorService = viewModelCreatorService;
+        }
+
+        public Func<string, object> StringToItemFunc
+        {
+            get
+            {
+                return address =>
+                {
+                    var model = _emailService.CreateNewEmailRecipient(address);
+                    return _viewModelCreatorService.CreateViewModel<IEmailRecipientModel, EmailRecipientViewModel>(model);
+                };
+            }
         }
 
         private WrappingCollection _recipients;
 
         public IEnumerable Recipients => _recipients ??= CreateRecipients();
 
-        private List<EmailRecipientViewModel> _selectedRecipients = new List<EmailRecipientViewModel>();
+        [SuppressMessage("ReSharper", "CollectionNeverUpdated.Local")] 
+        private readonly List<EmailRecipientViewModel> _selectedRecipients = new();
         public IEnumerable SelectedRecipients => _selectedRecipients;
 
         private WrappingCollection CreateRecipients()

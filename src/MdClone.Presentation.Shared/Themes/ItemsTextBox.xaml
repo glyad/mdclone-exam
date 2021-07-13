@@ -76,6 +76,7 @@
     <DataTemplate DataType="{x:Type local:ItemsTextBoxControl+ObjectItem}">
         <Grid Background="Transparent" Cursor="Arrow" Margin="4,0,0,0">
             <materialDesign:Chip
+                    x:Name="Chip"
                     VerticalContentAlignment="Center"
                     Content="{Binding Path=Value, Mode=OneWay}"
                     ContentStringFormat="{Binding Path=ItemStringFormat, RelativeSource={RelativeSource AncestorType={x:Type local:ItemsTextBoxControl}}}"
@@ -91,6 +92,12 @@
                 </i:Interaction.Triggers>
             </materialDesign:Chip>
         </Grid>
+
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=Value.Model.HasErrors, Mode=OneWay}" Value="True">
+                <Setter TargetName="Chip" Property="Background" Value="RosyBrown" />
+            </DataTrigger>
+        </DataTemplate.Triggers>
     </DataTemplate>
 
     <Style x:Key="ItemsControlStyle" TargetType="{x:Type ItemsControl}">

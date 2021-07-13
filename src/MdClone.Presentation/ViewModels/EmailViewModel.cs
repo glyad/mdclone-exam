@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.ViewModel.Extensions;
 using LogoFX.Client.Mvvm.ViewModel.Services;
@@ -43,6 +44,10 @@ namespace MdClone.Presentation.ViewModels
         protected override async Task<bool> SaveMethod(IEmailModel model)
         {
             IsActiveSaving = true;
+
+            model.To = To.SelectedRecipients.OfType<EmailRecipientViewModel>().Select(x => x.Model).ToArray();
+            model.Cc = Cc.SelectedRecipients.OfType<EmailRecipientViewModel>().Select(x => x.Model).ToArray();
+
             while (IsActiveSaving)
             {
                 await Task.Delay(100);

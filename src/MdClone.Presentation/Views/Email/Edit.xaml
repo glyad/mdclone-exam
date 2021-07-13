@@ -55,13 +55,15 @@
         <ContentControl Grid.Row="0"
                         Grid.Column="1"
                         Height="40"
-                        cal:View.Model="{Binding Path=To, Mode=OneWay}" />
+                        cal:View.Model="{Binding Path=To, Mode=OneWay}" 
+                        cal:View.Context="Edit" />
 
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Cc" />
         <ContentControl Grid.Row="1"
                         Grid.Column="1"
                         Height="40"
-                        cal:View.Model="{Binding Path=Cc, Mode=OneWay}" />
+                        cal:View.Model="{Binding Path=Cc, Mode=OneWay}" 
+                        cal:View.Context="Edit" />
 
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Subject" />
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Model.Subject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />

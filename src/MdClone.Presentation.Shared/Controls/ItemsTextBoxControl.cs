@@ -231,6 +231,8 @@ namespace MdClone.Presentation.Shared.Controls
 
         public ItemsTextBoxControl()
         {
+            StringToItemFunc = o => o;
+
             _innerItems = new ObservableCollection<Item>();
             _textItem = new TextItem();
             _textItem.KeyDown += OnTextBoxKeyDown;
@@ -306,9 +308,22 @@ namespace MdClone.Presentation.Shared.Controls
             set { SetValue(AutogenerateItemsProperty, value); }
         }
 
+        public static readonly DependencyProperty StringToItemFuncProperty =
+            DependencyProperty.Register(
+                "StringToItemFunc", 
+                typeof(Func<string, object>),
+                typeof(ItemsTextBoxControl),
+                new PropertyMetadata(default(Func<string, object>)));
+
+        public Func<string, object> StringToItemFunc
+        {
+            get => (Func<string, object>) GetValue(StringToItemFuncProperty);
+            set => SetValue(StringToItemFuncProperty, value);
+        }
+
         public Func<object, string> ItemToStringFunc = o => o.ToString();
 
-        public Func<string, object> StringToItemFunc = o => o;
+        // public Func<string, object> StringToItemFunc = o => o;
 
         #endregion
 
@@ -356,6 +371,15 @@ namespace MdClone.Presentation.Shared.Controls
                     var item = StringToItemFunc(str);
                     MoveToItems(item);
                 }
+            }
+
+            if (AutogenerateItems && e.Key == Key.OemSemicolon)
+            {
+                _popup.IsOpen = false;
+                var str = _textItem.Text.Replace(";", "").Trim();
+                var item = StringToItemFunc(str);
+                MoveToItems(item);
+                e.Handled = true;
             }
         }
 

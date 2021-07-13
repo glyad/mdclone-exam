@@ -7,6 +7,8 @@ namespace MdClone.Model.Contracts
     {
         IEmailModel CreateNewEmail();
 
+        IEmailRecipientModel CreateNewEmailRecipient(string address);
+
         Task SendEmail(IEmailModel emailModel, CancellationToken ct = default);
 
         Task<IEmailRecipientModel[]> GetRecipients(CancellationToken ct = default);

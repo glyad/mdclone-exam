@@ -26,6 +26,13 @@ namespace MdClone.Model
             return emailModel;
         }
 
+        IEmailRecipientModel IEmailService.CreateNewEmailRecipient(string address)
+        {
+            var emailRecipient = new EmailRecipientModel {Address = address};
+            emailRecipient.ClearDirty();
+            return emailRecipient;
+        }
+
         Task IEmailService.SendEmail(IEmailModel emailModel, CancellationToken ct)
         {
             return Task.Run(() => _emailProvider.SendEmail(_emailModelMapper.MapToDto(emailModel)), ct);

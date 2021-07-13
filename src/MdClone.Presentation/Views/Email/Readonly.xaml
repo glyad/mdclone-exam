@@ -6,6 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:MdClone.Presentation.ViewModels"
              xmlns:behaviors="clr-namespace:MdClone.Presentation.Shared.Behaviors;assembly=MdClone.Presentation.Shared"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModels:EmailViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -17,9 +18,9 @@
         </Grid.Resources>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="24" />
-            <RowDefinition Height="24" />
-            <RowDefinition Height="24" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="32" />
         </Grid.RowDefinitions>
@@ -30,10 +31,18 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0" Text="To" />
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Model.To, Mode=TwoWay}" FontWeight="Bold" Margin="8,0,0,0" />
+        <ContentControl Grid.Row="0"
+                        Grid.Column="1"
+                        Height="40"
+                        cal:View.Model="{Binding Path=To, Mode=OneWay}" 
+                        cal:View.Context="Readonly" />
 
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Cc" />
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Model.Cc, Mode=TwoWay}" FontWeight="Bold" Margin="8,0,0,0" />
+        <ContentControl Grid.Row="1"
+                        Grid.Column="1"
+                        Height="40"
+                        cal:View.Model="{Binding Path=Cc, Mode=OneWay}"
+                        cal:View.Context="Readonly" />
 
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Subject" />
         <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=Model.Subject, Mode=TwoWay}" FontWeight="Bold" Margin="8,0,0,0" />

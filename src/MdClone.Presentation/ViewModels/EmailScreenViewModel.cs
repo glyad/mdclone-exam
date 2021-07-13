@@ -34,7 +34,7 @@ namespace MdClone.Presentation.ViewModels
 
         [UsedImplicitly]
         public ICommand SendEmailCommand => _sendEmailCommand ??= ActionCommand<IEmailModel>
-            .When(model => Editable && !IsEmailSending && !((IHaveErrors) model).HasErrors)
+            .When(_ => Editable && !IsEmailSending)
             .Do(SendEmail)
             .RequeryOnPropertyChanged(this, () => Editable)
             .RequeryOnPropertyChanged(this, () => IsEmailSending);
