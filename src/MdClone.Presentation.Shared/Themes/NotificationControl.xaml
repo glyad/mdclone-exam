@@ -14,7 +14,7 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="{x:Type controls:NotificationControlItem}">
+    <!--<Style TargetType="{x:Type controls:NotificationControlItem}">
         <Setter Property="Margin" Value="8" />
         <Setter Property="Template">
             <Setter.Value>
@@ -26,7 +26,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
     <Style TargetType="{x:Type controls:NotificationControl}">
         <Setter Property="VerticalAlignment" Value="Bottom" />
@@ -34,8 +34,8 @@
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate DataType="{x:Type uiServices:NotificationService+NotificationItemViewModel}">
-                    <Grid Margin="12">
-                        <Grid.ColumnDefinitions>
+                    <Grid Margin="12" MinHeight="40">
+                        <!--<Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="32" />
                         </Grid.ColumnDefinitions>
@@ -58,8 +58,18 @@
                                     <commanding:ExecuteCommandAction Command="{Binding Path=CloseCommand, Mode=OneWay}" />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
-                        </Button>
+                        </Button>-->
 
+                        <materialDesign:Snackbar HorizontalAlignment="Stretch" IsActive="True">
+                            <materialDesign:SnackbarMessage
+                                Content="{Binding Path=Message, Mode=OneWay}"
+                                ActionContent="OK">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="ActionClick">
+                                        <commanding:ExecuteCommandAction Command="{Binding Path=CloseCommand, Mode=OneWay}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers></materialDesign:SnackbarMessage>
+                        </materialDesign:Snackbar>
                     </Grid>
                 </DataTemplate>
             </Setter.Value>

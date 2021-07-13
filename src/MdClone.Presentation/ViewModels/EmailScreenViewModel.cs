@@ -41,6 +41,10 @@ namespace MdClone.Presentation.ViewModels
 
         private  void SendEmail(IEmailModel model)
         {
+            if (!ActiveItem.ApplyCommand.CanExecute(null))
+            {
+                _notificationService.Show($"E-Mail cannot be send. Because {ActiveItem.Model.Error}");
+            }
             ActiveItem.ApplyCommand.Execute(null);
         }
 
@@ -94,7 +98,7 @@ namespace MdClone.Presentation.ViewModels
             Editable = false;
             IsEmailSending = false;
 
-            _notificationService.Show($"E-Mail has sent to {ActiveItem.Model.To}");
+            _notificationService.Show($"E-Mail has sent.");
         }
 
         private void OnSaving(object sender, EventArgs e)

@@ -14,9 +14,9 @@ namespace MdClone.Presentation.Shared.Controls
             SetBinding(ItemsSourceProperty, new Binding("Items") {Source = notificationService});
         }
 
-        protected override DependencyObject GetContainerForItemOverride()
-        {
-            return new NotificationControlItem();
-        }
+        //protected override DependencyObject GetContainerForItemOverride()
+        //{
+        //    return new NotificationControlItem();
+        //}
     }
 }
