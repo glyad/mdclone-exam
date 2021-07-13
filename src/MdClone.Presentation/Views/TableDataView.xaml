@@ -12,6 +12,7 @@
 
     <Grid>
         <DataGrid ItemsSource="{Binding Path=Model.Rows, Mode=OneWay}"
+                  IsReadOnly="True"
                   AutoGenerateColumns="False">
             <i:Interaction.Behaviors>
                 <behaviors:DataGridColumnsBehavior Columns="{Binding Path=Model.Header, Mode=OneWay}" />

@@ -8,7 +8,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
              xmlns:behaviors="clr-namespace:MdClone.Presentation.Shared.Behaviors;assembly=MdClone.Presentation.Shared"
-             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:EmailViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -60,7 +60,7 @@
 
         <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="8,8,0,0">
             <Grid.Resources>
-                <Style TargetType="{x:Type Button}" x:Key="FormatImageStyle">
+                <Style TargetType="{x:Type Button}" x:Key="FormatImageStyle" BasedOn="{StaticResource MaterialDesignIconButton}">
                     <Setter Property="Width" Value="30" />
                     <Setter Property="CommandTarget" Value="{Binding ElementName=RichTextBox}" />
                 </Style>
@@ -72,62 +72,56 @@
             </Grid.RowDefinitions>
 
             <!-- This tool bar contains all the editing buttons. -->
-            <ToolBar Height="30" DockPanel.Dock="Top">
+            <ToolBar Grid.Row="0" Height="30">
                 <Button Style="{StaticResource FormatImageStyle}" Command="ApplicationCommands.Cut" ToolTip="Cut">
-                    <iconPacks:PackIconMaterial Kind="ContentCut" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <materialDesign:PackIcon Kind="ContentCut" />
                 </Button>
                 <Button Style="{StaticResource FormatImageStyle}" Command="ApplicationCommands.Copy" ToolTip="Copy">
-                    <iconPacks:PackIconMaterial Kind="ContentCopy" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <materialDesign:PackIcon Kind="ContentCopy" />
                 </Button>
                 <Button Style="{StaticResource FormatImageStyle}" Command="ApplicationCommands.Paste" ToolTip="Paste">
-                    <iconPacks:PackIconMaterial Kind="ContentPaste" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <materialDesign:PackIcon Kind="ContentPaste" />
                 </Button>
                 <Button Style="{StaticResource FormatImageStyle}" Command="ApplicationCommands.Undo" ToolTip="Undo">
-                    <iconPacks:PackIconMaterial Kind="Undo" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <materialDesign:PackIcon Kind="Undo" />
                 </Button>
                 <Button Style="{StaticResource FormatImageStyle}" Command="ApplicationCommands.Redo" ToolTip="Redo">
-                    <iconPacks:PackIconMaterial Kind="Redo" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <materialDesign:PackIcon Kind="Redo" />
                 </Button>
 
                 <Button Style="{StaticResource FormatImageStyle}" Command="EditingCommands.ToggleBold" ToolTip="Bold">
-                    <iconPacks:PackIconMaterial Kind="FormatBold" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <materialDesign:PackIcon Kind="FormatBold" />
                 </Button>
                 <Button Style="{StaticResource FormatImageStyle}" Command="EditingCommands.ToggleItalic" ToolTip="Italic">
-                    <iconPacks:PackIconMaterial Kind="FormatItalic" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <materialDesign:PackIcon Kind="FormatItalic" />
                 </Button>
                 <Button Style="{StaticResource FormatImageStyle}" Command="EditingCommands.ToggleUnderline" ToolTip="Underline">
-                    <iconPacks:PackIconMaterial Kind="FormatUnderline" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <materialDesign:PackIcon Kind="FormatUnderline" />
                 </Button>
                 <Button Style="{StaticResource FormatImageStyle}" Command="EditingCommands.IncreaseFontSize" ToolTip="Redo">
-                    <iconPacks:PackIconMaterial Kind="FormatFontSizeIncrease" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <materialDesign:PackIcon Kind="FormatFontSizeIncrease" />
                 </Button>
                 <Button Style="{StaticResource FormatImageStyle}" Command="EditingCommands.DecreaseFontSize" ToolTip="Shrink Font">
-                    <iconPacks:PackIconMaterial Kind="FormatFontSizeDecrease" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <materialDesign:PackIcon Kind="FormatFontSizeDecrease" />
                 </Button>
 
                 <Button Style="{StaticResource FormatImageStyle}" Command="EditingCommands.ToggleBullets" ToolTip="Bullets">
-                    <iconPacks:PackIconMaterial Kind="FormatListBulleted" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <materialDesign:PackIcon Kind="FormatListBulleted" />
                 </Button>
                 <Button Style="{StaticResource FormatImageStyle}" Command="EditingCommands.ToggleNumbering" ToolTip="Numbering">
-                    <iconPacks:PackIconMaterial Kind="FormatListNumbered" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <materialDesign:PackIcon Kind="FormatListNumbered" />
                 </Button>
                 <Button Style="{StaticResource FormatImageStyle}" Command="EditingCommands.AlignLeft" ToolTip="Align Left">
-                    <iconPacks:PackIconMaterial Kind="FormatAlignLeft" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <materialDesign:PackIcon Kind="FormatAlignLeft" />
                 </Button>
                 <Button Style="{StaticResource FormatImageStyle}" Command="EditingCommands.AlignCenter" ToolTip="Align Center">
-                    <iconPacks:PackIconMaterial Kind="FormatAlignCenter" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <materialDesign:PackIcon Kind="FormatAlignCenter" />
                 </Button>
                 <Button Style="{StaticResource FormatImageStyle}" Command="EditingCommands.AlignRight" ToolTip="Align Right">
-                    <iconPacks:PackIconMaterial Kind="FormatAlignRight" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <materialDesign:PackIcon Kind="FormatAlignRight" />
                 </Button>
                 <Button Style="{StaticResource FormatImageStyle}" Command="EditingCommands.AlignJustify" ToolTip="Align Justify">
-                    <iconPacks:PackIconMaterial Kind="FormatAlignJustify" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                </Button>
-                <Button Style="{StaticResource FormatImageStyle}" Command="EditingCommands.IncreaseIndentation" ToolTip="Increase Indent">
-                    <iconPacks:PackIconMaterial Kind="FormatIndentIncrease" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                </Button>
-                <Button Style="{StaticResource FormatImageStyle}" Command="EditingCommands.DecreaseIndentation" ToolTip="Decrease Indent">
-                    <iconPacks:PackIconMaterial Kind="FormatIndentDecrease" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <materialDesign:PackIcon Kind="FormatAlignJustify" />
                 </Button>
             </ToolBar>
 

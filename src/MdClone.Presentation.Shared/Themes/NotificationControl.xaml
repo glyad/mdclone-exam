@@ -3,7 +3,6 @@
                     xmlns:controls="clr-namespace:MdClone.Presentation.Shared.Controls"
                     xmlns:uiServices="clr-namespace:MdClone.Presentation.Shared.UIServices"
                     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                     xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform">
 
     <Style TargetType="{x:Type controls:NotificationControlItem}">
@@ -35,7 +34,6 @@
                         <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="16" Foreground="White" Text="{Binding Path=Message}" IsHitTestVisible="False" />
 
                         <Button Grid.Column="1"
-                                Style="{DynamicResource MahApps.Styles.Button.Circle}"
                                 Foreground="White"
                                 BorderThickness="0"
                                 ToolTip="Close"
@@ -44,11 +42,11 @@
                                 Margin="0"
                                 Width="24"
                                 Height="24">
-                            <iconPacks:PackIconMaterial Kind="Close"
+                            <!--<iconPacks:PackIconMaterial Kind="Close"
                                                         Width="12"
                                                         Height="12"
                                                         VerticalAlignment="Center"
-                                                        HorizontalAlignment="Center" />
+                                                        HorizontalAlignment="Center" />-->
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Click">
                                     <commanding:ExecuteCommandAction Command="{Binding Path=CloseCommand, Mode=OneWay}" />

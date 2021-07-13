@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:viewModels="clr-namespace:MdClone.Presentation.ViewModels"
-             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModels:EmailScreenViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -22,8 +21,8 @@
 
         <Grid Visibility="{Binding Path=IsEmailSending, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Border Background="Black" Opacity="0.4" />
-            <mah:ProgressRing Foreground="{DynamicResource AccentColorBrush}"
-                              IsActive="True" />
+            <!--<mah:ProgressRing Foreground="{DynamicResource AccentColorBrush}"
+                              IsActive="True" />-->
         </Grid>
     </Grid>
 </UserControl>
