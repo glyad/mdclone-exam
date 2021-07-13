@@ -6,6 +6,7 @@
         <!-- Theme setting -->
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
 
-        <ResourceDictionary Source="ListBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MdClone.Presentation.Shared;component/Themes/ListBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MdClone.Presentation.Shared;component/Themes/NotificationControl.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

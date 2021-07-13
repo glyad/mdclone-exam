@@ -10,6 +10,7 @@
                  xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                  xmlns:commanding="clr-namespace:LogoFX.Client.Mvvm.Commanding;assembly=LogoFX.Client.Mvvm.Commanding.Platform"
                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                 xmlns:controls="clr-namespace:MdClone.Presentation.Shared.Controls;assembly=MdClone.Presentation.Shared"
                  mc:Ignorable="d"
                  d:DataContext="{d:DesignInstance viewModels:ShellViewModel}"
                  Height="450"
@@ -121,6 +122,10 @@
             <ContentControl Margin="0,12,0,0" 
                             cal:View.Model="{Binding Path=ActiveItem, Mode=OneWay}"
                             />
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.RowSpan="3">
+            <controls:NotificationControl />
         </Grid>
     </Grid>
 </mah:MetroWindow>

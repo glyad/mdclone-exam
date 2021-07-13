@@ -8,7 +8,7 @@ namespace MdClone.Data.Real.Providers
     {
         public void SendEmail(EmailDto emailDto)
         {
-            Thread.Sleep(4000);
+            Thread.Sleep(500);
         }
     }
 }

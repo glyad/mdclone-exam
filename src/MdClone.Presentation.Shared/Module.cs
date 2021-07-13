@@ -12,7 +12,8 @@ namespace MdClone.Presentation.Shared
         public void RegisterModule(IDependencyRegistrator dependencyRegistrator)
         {
             dependencyRegistrator
-                .AddSingleton<IBrowseFolderService, BrowseFolderService>();
+                .AddSingleton<IBrowseFolderService, BrowseFolderService>()
+                .AddSingleton<INotificationService, NotificationService>();
         }
     }
 }

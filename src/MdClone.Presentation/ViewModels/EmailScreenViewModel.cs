@@ -9,6 +9,7 @@ using LogoFX.Client.Mvvm.Model.Contracts;
 using LogoFX.Client.Mvvm.ViewModel.Extensions;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using MdClone.Model.Contracts;
+using MdClone.Presentation.Shared.UIServices;
 
 namespace MdClone.Presentation.ViewModels
 {
@@ -17,11 +18,16 @@ namespace MdClone.Presentation.ViewModels
     {
         private readonly IEmailService _emailService;
         private readonly IViewModelCreatorService _viewModelCreatorService;
+        private readonly INotificationService _notificationService;
 
-        public EmailScreenViewModel(IEmailService emailService, IViewModelCreatorService viewModelCreatorService)
+        public EmailScreenViewModel(
+            IEmailService emailService, 
+            IViewModelCreatorService viewModelCreatorService, 
+            INotificationService notificationService)
         {
             _emailService = emailService;
             _viewModelCreatorService = viewModelCreatorService;
+            _notificationService = notificationService;
         }
 
         private ICommand _sendEmailCommand;
@@ -87,6 +93,8 @@ namespace MdClone.Presentation.ViewModels
         {
             Editable = false;
             IsEmailSending = false;
+
+            _notificationService.Show($"E-Mail has sent to {ActiveItem.Model.To}");
         }
 
         private void OnSaving(object sender, EventArgs e)
