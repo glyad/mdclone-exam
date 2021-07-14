@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using System.Windows.Input;
 using Caliburn.Micro;
 using JetBrains.Annotations;
-using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel.Extensions;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using MdClone.Model.Contracts;
@@ -29,23 +27,23 @@ namespace MdClone.Presentation.ViewModels
             _notificationService = notificationService;
         }
 
-        private ICommand _sendEmailCommand;
+        //private ICommand _sendEmailCommand;
 
-        [UsedImplicitly]
-        public ICommand SendEmailCommand => _sendEmailCommand ??= ActionCommand<IEmailModel>
-            .When(_ => Editable && !IsEmailSending)
-            .Do(SendEmail)
-            .RequeryOnPropertyChanged(this, () => Editable)
-            .RequeryOnPropertyChanged(this, () => IsEmailSending);
+        //[UsedImplicitly]
+        //public ICommand SendEmailCommand => _sendEmailCommand ??= ActionCommand<IEmailModel>
+        //    .When(_ => Editable && !IsEmailSending)
+        //    .Do(SendEmail)
+        //    .RequeryOnPropertyChanged(this, () => Editable)
+        //    .RequeryOnPropertyChanged(this, () => IsEmailSending);
 
-        private  void SendEmail(IEmailModel model)
-        {
-            if (!ActiveItem.ApplyCommand.CanExecute(null))
-            {
-                _notificationService.Show("E-Mail cannot be send");
-            }
-            ActiveItem.ApplyCommand.Execute(null);
-        }
+        //private  void SendEmail(IEmailModel model)
+        //{
+        //    if (!ActiveItem.ApplyCommand.CanExecute(null))
+        //    {
+        //        _notificationService.Show("E-Mail cannot be send");
+        //    }
+        //    ActiveItem.ApplyCommand.Execute(null);
+        //}
 
         private bool _editable = true;
 

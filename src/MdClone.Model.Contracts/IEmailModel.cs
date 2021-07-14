@@ -5,9 +5,9 @@ namespace MdClone.Model.Contracts
 {
     public interface IEmailModel : IAppModel, IEditableModel
     {
-        IEmailRecipientModel[] To { get; set; }
+        IEmailRecipientsModel To { get; }
 
-        IEmailRecipientModel[] Cc { get; set; }
+        IEmailRecipientsModel Cc { get; }
 
         string Subject { get; set; }
 

@@ -63,12 +63,12 @@ namespace MdClone.Presentation.ViewModels
         private RecipientsViewModel _to;
 
         public RecipientsViewModel To => _to ??=
-            _viewModelCreatorService.CreateViewModel<IEmailRecipientModel[], RecipientsViewModel>(Model.To);
+            _viewModelCreatorService.CreateViewModel<IEmailRecipientsModel, RecipientsViewModel>(Model.To);
 
         private RecipientsViewModel _cc;
 
         public RecipientsViewModel Cc => _cc ??=
-            _viewModelCreatorService.CreateViewModel<IEmailRecipientModel[], RecipientsViewModel>(Model.Cc);
+            _viewModelCreatorService.CreateViewModel<IEmailRecipientsModel, RecipientsViewModel>(Model.Cc);
 
         private bool _isActiveSaving;
         public bool IsActiveSaving
@@ -87,9 +87,6 @@ namespace MdClone.Presentation.ViewModels
         protected override async Task<bool> SaveMethod(IEmailModel model)
         {
             IsActiveSaving = true;
-
-            model.To = To.SelectedRecipients.OfType<EmailRecipientViewModel>().Select(x => x.Model).ToArray();
-            model.Cc = Cc.SelectedRecipients.OfType<EmailRecipientViewModel>().Select(x => x.Model).ToArray();
 
             while (IsActiveSaving)
             {

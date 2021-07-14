@@ -3,14 +3,15 @@ using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.Model;
 using LogoFX.Core;
 using MdClone.Model.Contracts;
+using MdClone.Model.Validation;
 
 namespace MdClone.Model
 {
     [UsedImplicitly]
     internal class EmailModel : EditableModel, IEmailModel
     {
-        private IEmailRecipientModel[] _to;
-        private IEmailRecipientModel[] _cc;
+        private IEmailRecipientsModel _to;
+        private IEmailRecipientsModel _cc;
         private string _subject;
         private byte[] _message;
         private readonly RangeObservableCollection<IAttachedFile> _attachedFiles;
@@ -18,15 +19,18 @@ namespace MdClone.Model
         public EmailModel()
         {
             _attachedFiles = new RangeObservableCollection<IAttachedFile>();
+            _to = new EmailRecipientsModel();
+            _cc = new EmailRecipientsModel();
         }
 
-        public IEmailRecipientModel[] To
+        [EmailRecipientsValidation]
+        public IEmailRecipientsModel To
         {
             get => _to;
             set => SetProperty(ref _to, value);
         }
 
-        public IEmailRecipientModel[] Cc
+        public IEmailRecipientsModel Cc
         {
             get => _cc;
             set => SetProperty(ref _cc, value);

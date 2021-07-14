@@ -21,11 +21,7 @@ namespace MdClone.Model
             _emailRecipientModelMapper = emailRecipientModelMapper;
         }
 
-        IEmailModel IEmailService.CreateNewEmail()
-        {
-            var emailModel = new EmailModel();
-            return emailModel;
-        }
+        IEmailModel IEmailService.CreateNewEmail() => new EmailModel();
 
         IEmailRecipientModel IEmailService.CreateNewEmailRecipient(string address)
         {

@@ -183,9 +183,8 @@
                     Content="Send">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <commanding:ExecuteNamedCommandAction CommandName="SendEmailCommand"
-                                                              Parameter="{Binding Path=Model, Mode=OneWay}"
-                                                              ManageEnableState="True" />
+                        <commanding:ExecuteCommandAction Command="{Binding Path=ApplyCommand, Mode=OneWay}"
+                                                         ManageEnableState="True" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>

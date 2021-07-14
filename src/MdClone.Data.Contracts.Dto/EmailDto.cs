@@ -2,8 +2,8 @@
 {
     public class EmailDto
     {
-        public EmailRecipientDto[] To { get; set; }
-        public EmailRecipientDto[] Cc { get; set; }
+        public EmailRecipientsDto To { get; set; }
+        public EmailRecipientsDto Cc { get; set; }
         public string Subject { get; set; }
         public byte[] Message { get; set; }
     }
