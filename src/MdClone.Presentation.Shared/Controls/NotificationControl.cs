@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Data;
 using Caliburn.Micro;
 using MdClone.Presentation.Shared.UIServices;

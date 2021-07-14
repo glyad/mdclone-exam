@@ -5,7 +5,6 @@ using System.Windows.Input;
 using Caliburn.Micro;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.Commanding;
-using LogoFX.Client.Mvvm.Model.Contracts;
 using LogoFX.Client.Mvvm.ViewModel.Extensions;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using MdClone.Model.Contracts;

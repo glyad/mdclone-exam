@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MdClone.Data.Contracts.Providers;
@@ -41,6 +42,31 @@ namespace MdClone.Model
         Task<IEmailRecipientModel[]> IEmailService.GetRecipients(CancellationToken ct)
         {
             return Task.Run(() => _emailProvider.GetRecipients().Select(dto => _emailRecipientModelMapper.MapToModel(dto)).ToArray(), ct);
+        }
+
+        Task<IAttachedFile> IEmailService.Attach(IEmailModel emailModel, string filename, CancellationToken ct)
+        {
+            return Task.Run(() =>
+            {
+                var fileInfo = new FileInfo(filename);
+
+                Thread.Sleep(1000);
+
+                var attachedFile = new AttachedFile(filename)
+                {
+                    FileSize = fileInfo.Length,
+                    Name = fileInfo.Name
+                };
+
+                ((EmailModel) emailModel).AttachedFiles.Add(attachedFile);
+
+                return (IAttachedFile) attachedFile;
+            }, ct);
+        }
+
+        void IEmailService.Detach(IEmailModel emailModel, IAttachedFile attachedFile)
+        {
+            ((EmailModel) emailModel).AttachedFiles.Remove(attachedFile);
         }
     }
 }

@@ -94,6 +94,7 @@
         </Grid>
 
         <DataTemplate.Triggers>
+            <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
             <DataTrigger Binding="{Binding Path=Value.Model.HasErrors, Mode=OneWay}" Value="True">
                 <Setter TargetName="Chip" Property="Background" Value="RosyBrown" />
             </DataTrigger>

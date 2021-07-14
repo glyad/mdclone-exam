@@ -19,23 +19,6 @@
             <Style TargetType="TextBlock">
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
-
-            <Style TargetType="TextBox">
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="Margin" Value="8,0,0,0" />
-                <Setter Property="Validation.ErrorTemplate">
-                    <Setter.Value>
-                        <ControlTemplate>
-                            <DockPanel>
-                                <TextBlock Text="{Binding ErrorContent}" DockPanel.Dock="Bottom" Foreground="Red"/>
-                                <Border BorderBrush="Red" BorderThickness="2">
-                                    <AdornedElementPlaceholder/>
-                                </Border>
-                            </DockPanel>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
         </Grid.Resources>
 
         <Grid.RowDefinitions>
@@ -43,7 +26,7 @@
             <RowDefinition Height="48" />
             <RowDefinition Height="48" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="32" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -143,13 +126,40 @@
             </RichTextBox>
         </Grid>
 
-        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="8,0,8,0">
-            <Button Height="24" Width="80" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Send">
+        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,8,0,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    Height="24" 
+                    Width="80"
+                    Margin="8,0,0,0"
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Left" 
+                    Content="Send">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
                         <commanding:ExecuteNamedCommandAction CommandName="SendEmailCommand"
                                                               Parameter="{Binding Path=Model, Mode=OneWay}"
                                                               ManageEnableState="True" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+            <Button Grid.Column="1"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    Margin="8,0,0,0"
+                    ToolTip="Attach file"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left">
+                <materialDesign:PackIcon Kind="AttachFile" />
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <commanding:ExecuteCommandAction Command="{Binding Path=AttachCommand, Mode=OneWay}"
+                                                         ManageEnableState="True" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>

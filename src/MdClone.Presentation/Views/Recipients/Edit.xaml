@@ -16,6 +16,7 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Grid MinHeight="24" MinWidth="80">
+                        <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                         <TextBlock Foreground="Black"
                                    Validation.ErrorTemplate="{x:Null}"
                                    VerticalAlignment="Center"

@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppModel.cs" />
+    <Compile Include="AttachedFile.cs" />
     <Compile Include="DataService.cs" />
     <Compile Include="EmailModel.cs" />
     <Compile Include="EmailRecipientModel.cs" />

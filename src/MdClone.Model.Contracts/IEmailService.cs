@@ -12,5 +12,9 @@ namespace MdClone.Model.Contracts
         Task SendEmail(IEmailModel emailModel, CancellationToken ct = default);
 
         Task<IEmailRecipientModel[]> GetRecipients(CancellationToken ct = default);
+
+        Task<IAttachedFile> Attach(IEmailModel emailModel, string filename, CancellationToken ct = default);
+
+        void Detach(IEmailModel emailModel, IAttachedFile attachedFile);
     }
 }

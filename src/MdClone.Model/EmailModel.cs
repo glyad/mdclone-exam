@@ -1,5 +1,7 @@
-﻿using JetBrains.Annotations;
+﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.Model;
+using LogoFX.Core;
 using MdClone.Model.Contracts;
 
 namespace MdClone.Model
@@ -11,6 +13,12 @@ namespace MdClone.Model
         private IEmailRecipientModel[] _cc;
         private string _subject;
         private byte[] _message;
+        private readonly RangeObservableCollection<IAttachedFile> _attachedFiles;
+
+        public EmailModel()
+        {
+            _attachedFiles = new RangeObservableCollection<IAttachedFile>();
+        }
 
         public IEmailRecipientModel[] To
         {
@@ -35,5 +43,9 @@ namespace MdClone.Model
             get => _message;
             set => SetProperty(ref _message, value);
         }
+
+        public ICollection<IAttachedFile> AttachedFiles => _attachedFiles;
+
+        IEnumerable<IAttachedFile> IEmailModel.AttachedFiles => AttachedFiles;
     }
 }
