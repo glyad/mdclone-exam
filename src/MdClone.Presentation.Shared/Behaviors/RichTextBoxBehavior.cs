@@ -63,6 +63,19 @@ namespace MdClone.Presentation.Shared.Behaviors
             set => SetValue(IsActiveProperty, value);
         }
 
+        public static readonly DependencyProperty IsEmptyProperty = 
+            DependencyProperty.Register(
+                "IsEmpty", 
+                typeof(bool), 
+                typeof(RichTextBoxBehavior), 
+                new PropertyMetadata(true));
+
+        public bool IsEmpty
+        {
+            get => (bool) GetValue(IsEmptyProperty);
+            set => SetValue(IsEmptyProperty, value);
+        }
+
         private void LoadData(byte[] newValue)
         {
             if (newValue == null || newValue.Length == 0)
@@ -94,6 +107,21 @@ namespace MdClone.Presentation.Shared.Behaviors
         {
             get => (byte[]) GetValue(RichDataProperty);
             set => SetValue(RichDataProperty, value);
+        }
+
+        protected override void OnAttached()
+        {
+            base.OnAttached();
+
+            AssociatedObject.TextChanged += AssociatedObject_TextChanged;
+        }
+
+        private void AssociatedObject_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var start = AssociatedObject.Document.ContentStart;
+            var end = AssociatedObject.Document.ContentEnd;
+            int difference = start.GetOffsetToPosition(end);
+            IsEmpty = difference == 2 || difference == 0 || difference == 4;
         }
     }
 }
