@@ -42,7 +42,7 @@ namespace MdClone.Presentation.ViewModels
         {
             if (!ActiveItem.ApplyCommand.CanExecute(null))
             {
-                _notificationService.Show($"E-Mail cannot be send. Because {ActiveItem.Model.Error}");
+                _notificationService.Show("E-Mail cannot be send");
             }
             ActiveItem.ApplyCommand.Execute(null);
         }

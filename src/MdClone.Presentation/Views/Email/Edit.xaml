@@ -11,6 +11,7 @@
              xmlns:behaviors="clr-namespace:MdClone.Presentation.Shared.Behaviors;assembly=MdClone.Presentation.Shared"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:cal="http://www.caliburnproject.org"
+             xmlns:contracts="clr-namespace:MdClone.Model.Contracts;assembly=MdClone.Model.Contracts"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:EmailViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -19,6 +20,11 @@
             <Style TargetType="TextBlock">
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
+
+            <Style TargetType="TextBox">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="8,0,0,0" />
+            </Style>
         </Grid.Resources>
 
         <Grid.RowDefinitions>
@@ -26,6 +32,7 @@
             <RowDefinition Height="48" />
             <RowDefinition Height="48" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -127,6 +134,40 @@
         </Grid>
 
         <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,8,0,8">
+            <ItemsControl ItemsSource="{Binding Path=Model.AttachedFiles, Mode=OneWay}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type contracts:IAttachedFile}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="280" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Grid.Column="1" VerticalAlignment="Center" FontSize="14" Text="{Binding Path=Name, Mode=OneWay}" />
+
+                            <Button Grid.Column="2"
+                                    Style="{StaticResource MaterialDesignIconButton}"
+                                    Margin="8,0,0,0"
+                                    ToolTip="Remove"
+                                    VerticalAlignment="Center">
+                                <materialDesign:PackIcon Kind="Remove" />
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <commanding:ExecuteNamedCommandAction CommandName="DetachCommand"
+                                                                              Parameter="{Binding}"
+                                                                              ManageEnableState="True" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+
+        <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />

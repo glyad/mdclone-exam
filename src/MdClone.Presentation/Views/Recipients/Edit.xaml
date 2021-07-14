@@ -15,7 +15,7 @@
                                       ItemsSource="{Binding Path=SelectedRecipients, Mode=OneWay}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Grid MinHeight="24" MinWidth="80">
+                    <Grid MinHeight="24">
                         <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                         <TextBlock Foreground="Black"
                                    Validation.ErrorTemplate="{x:Null}"

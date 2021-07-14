@@ -44,9 +44,9 @@ namespace MdClone.Model
             return Task.Run(() => _emailProvider.GetRecipients().Select(dto => _emailRecipientModelMapper.MapToModel(dto)).ToArray(), ct);
         }
 
-        Task<IAttachedFile> IEmailService.Attach(IEmailModel emailModel, string filename, CancellationToken ct)
+        async Task<IAttachedFile> IEmailService.Attach(IEmailModel emailModel, string filename, CancellationToken ct)
         {
-            return Task.Run(() =>
+            var result = await Task.Run(() =>
             {
                 var fileInfo = new FileInfo(filename);
 
@@ -58,10 +58,12 @@ namespace MdClone.Model
                     Name = fileInfo.Name
                 };
 
-                ((EmailModel) emailModel).AttachedFiles.Add(attachedFile);
-
                 return (IAttachedFile) attachedFile;
             }, ct);
+
+            ((EmailModel)emailModel).AttachedFiles.Add(result);
+
+            return result;
         }
 
         void IEmailService.Detach(IEmailModel emailModel, IAttachedFile attachedFile)

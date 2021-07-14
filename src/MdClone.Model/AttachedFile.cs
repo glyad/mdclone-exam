@@ -1,4 +1,5 @@
-﻿using MdClone.Model.Contracts;
+﻿using JetBrains.Annotations;
+using MdClone.Model.Contracts;
 
 namespace MdClone.Model
 {
@@ -9,7 +10,7 @@ namespace MdClone.Model
             Filename = filename;
         }
 
-        public string Filename { get; }
+        public string Filename { [UsedImplicitly] get; }
 
         public long FileSize { get; set; }
     }
