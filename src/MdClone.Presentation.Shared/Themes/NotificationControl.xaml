@@ -34,7 +34,7 @@
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate DataType="{x:Type uiServices:NotificationService+NotificationItemViewModel}">
-                    <Grid Margin="12" MinHeight="40">
+                    <Grid Margin="12,12,12,0" MinHeight="40">
                         <!--<Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="32" />
