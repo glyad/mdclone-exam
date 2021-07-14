@@ -52,7 +52,11 @@ namespace MdClone.Presentation.ViewModels
             }
 
             IsAttaching = true;
-            await _emailService.Attach(Model, _openFileService.File.FullName);
+            var retVal = await _emailService.Attach(Model, _openFileService.File.FullName);
+            if (retVal == null)
+            {
+                await _messageService.ShowAsync("File cannot be attached.", "Attach file", MessageButton.OK, MessageImage.Information);
+            }
             IsAttaching = false;
         }
 
