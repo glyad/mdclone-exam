@@ -42,6 +42,11 @@ namespace MdClone.Model
 
         async Task<IAttachedFile> IEmailService.Attach(IEmailModel emailModel, string filename, CancellationToken ct)
         {
+            if (emailModel.AttachedFiles.OfType<AttachedFile>().Any(x => x.Filename == filename))
+            {
+                return null;
+            }
+
             var result = await Task.Run(() =>
             {
                 var fileInfo = new FileInfo(filename);
