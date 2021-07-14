@@ -376,9 +376,12 @@ namespace MdClone.Presentation.Shared.Controls
             if (AutogenerateItems && e.Key == Key.OemSemicolon)
             {
                 _popup.IsOpen = false;
-                var str = _textItem.Text.Replace(";", "").Trim();
-                var item = StringToItemFunc(str);
-                MoveToItems(item);
+                var str = _textItem.Text;
+                if (!string.IsNullOrEmpty(str))
+                {
+                    var item = StringToItemFunc(str);
+                    MoveToItems(item);
+                }
                 e.Handled = true;
             }
         }

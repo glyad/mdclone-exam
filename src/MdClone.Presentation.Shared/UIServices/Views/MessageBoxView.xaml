@@ -1,0 +1,127 @@
+﻿<Window x:Class="MdClone.Presentation.Shared.UIServices.Views.MessageBoxView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:viewModels="clr-namespace:MdClone.Presentation.Shared.UIServices.ViewModels"
+        xmlns:behaviors="clr-namespace:MdClone.Presentation.Shared.Behaviors"
+        WindowStartupLocation="CenterScreen"
+        d:DataContext="{d:DesignInstance viewModels:MessageBoxViewModel}"
+        d:DesignHeight="300" 
+        d:DesignWidth="300" 
+        mc:Ignorable="d">
+
+    <Window.Style>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="Width" Value="460" />
+            <Setter Property="Height" Value="260" />
+            <Setter Property="Background" Value="#FFFFFFFF" />
+            <Setter Property="WindowStyle" Value="None" />
+            <Setter Property="ResizeMode" Value="NoResize" />
+        </Style>
+    </Window.Style>
+
+    <i:Interaction.Behaviors>
+        <behaviors:MoveWindowBehavior />
+    </i:Interaction.Behaviors>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="43"/>
+            <!--Title-->
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <!--Body-->
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <!--Buttons-->
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--Top Line-->
+        <Border Grid.Row="0"
+                VerticalAlignment="Top"
+                Height="4"
+                Background="#FF000000" />
+
+        <!--Title-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="24"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="24"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="1" Text="{Binding Title}" FontWeight="Bold" />
+        </Grid>
+
+        <!--Body-->
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="24"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="24"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="1" Text="{Binding Message}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" />
+        </Grid>
+
+        <!--Buttons-->
+        <Grid Grid.Row="5" 
+              Height="88" 
+              Background="#FFF2F2F2">
+
+            <StackPanel Orientation="Horizontal" Margin="24,0,24,0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <StackPanel.Resources>
+                    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+                    <Style TargetType="Button">
+                        <Setter Property="Width" Value="130" />
+                        <Setter Property="Margin" Value="8,0,0,0" />
+                    </Style>
+                </StackPanel.Resources>
+
+                <Button Command="{Binding Path=CancelCommand, Mode=OneTime}" 
+                        Content="{Binding Path=CancelCommandCaption, Mode=OneTime}" 
+                        Visibility="{Binding Path=IsCancelButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                    <!--<i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Loaded">
+                            <actions:SetFocusAction IsEnabled="{Binding Path=IsCancelButtonVisible, Mode=OneWay}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>-->
+                </Button>
+                <Button Command="{Binding Path=OkCommand, Mode=OneTime}"
+                        Content="{Binding OkCommandCaption, Mode=OneTime}"
+                        Visibility="{Binding Path=IsOkButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        IsDefault="True" />
+                <Button Command="{Binding Path=NoCommand, Mode=OneTime}" 
+                        Content="{Binding Path=NoCommandCaption, Mode=OneTime}" 
+                        Visibility="{Binding Path=IsNoButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                    <!--<i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Loaded">
+                            <actions:SetFocusAction IsEnabled="{Binding Path=IsNoButtonVisible, Mode=OneWay}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>-->
+                </Button>
+                <Button Command="{Binding Path=YesCommand, Mode=OneTime}"
+                        Content="{Binding Path=YesCommandCaption, Mode=OneTime}"
+                        Visibility="{Binding Path=IsYesButtonVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        IsDefault="True" />
+            </StackPanel>
+        </Grid>
+
+        <!--Temporary Border-->
+        <Border Grid.Row="0"
+                Grid.RowSpan="6"
+                BorderBrush="Black"
+                BorderThickness="1" />
+    </Grid>
+</Window>

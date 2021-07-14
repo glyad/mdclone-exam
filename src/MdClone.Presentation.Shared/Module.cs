@@ -14,6 +14,7 @@ namespace MdClone.Presentation.Shared
             dependencyRegistrator
                 .AddSingleton<IBrowseFolderService, BrowseFolderService>()
                 .AddSingleton<IOpenFileService, OpenFileService>()
+                .AddSingleton<IMessageService, MessageBoxService>()
                 .AddSingleton<INotificationService, NotificationService>();
         }
     }

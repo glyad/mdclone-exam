@@ -92,10 +92,13 @@ namespace MdClone.Presentation.ViewModels
 
         private void OnSaved(object sender, ResultEventArgs e)
         {
-            Editable = false;
             IsEmailSending = false;
 
-            _notificationService.Show($"E-Mail has sent.");
+            if (e.Successful)
+            {
+                Editable = false;
+                _notificationService.Show($"E-Mail has sent.");
+            }
         }
 
         private void OnSaving(object sender, EventArgs e)

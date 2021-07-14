@@ -6,6 +6,7 @@ using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.ViewModel.Extensions;
 using LogoFX.Client.Mvvm.ViewModel.Services;
+using LogoFX.Client.Mvvm.ViewModel.Shared;
 using MdClone.Model.Contracts;
 
 namespace MdClone.Presentation.ViewModels
@@ -15,17 +16,20 @@ namespace MdClone.Presentation.ViewModels
     {
         private readonly IEmailService _emailService;
         private readonly IOpenFileService _openFileService;
+        private readonly IMessageService _messageService;
         private readonly IViewModelCreatorService _viewModelCreatorService;
 
         public EmailViewModel(
             IEmailModel model,
             IEmailService emailService,
             IOpenFileService openFileService,
+            IMessageService messageService,
             IViewModelCreatorService viewModelCreatorService)
             : base(model)
         {
             _emailService = emailService;
             _openFileService = openFileService;
+            _messageService = messageService;
             _viewModelCreatorService = viewModelCreatorService;
         }
 
@@ -86,6 +90,19 @@ namespace MdClone.Presentation.ViewModels
 
         protected override async Task<bool> SaveMethod(IEmailModel model)
         {
+            bool allowSendMail = true;
+
+            if (string.IsNullOrWhiteSpace(Model.Subject))
+            {
+                var retVal = await _messageService.ShowAsync("Do you want to send mail without a subject?", "Sending mail", MessageButton.YesNo, MessageImage.Question);
+                allowSendMail = retVal == MessageResult.Yes;
+            }
+
+            if (!allowSendMail)
+            {
+                return false;
+            }
+
             IsActiveSaving = true;
 
             while (IsActiveSaving)
