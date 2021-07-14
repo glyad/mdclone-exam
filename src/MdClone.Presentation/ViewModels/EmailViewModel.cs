@@ -1,6 +1,7 @@
 ﻿using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Input;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.Commanding;
@@ -92,9 +93,28 @@ namespace MdClone.Presentation.ViewModels
             set => SetProperty(ref _isAttaching, value);
         }
 
+        private bool _messageIsEmpty;
+
+        public bool MessageIsEmpty
+        {
+            get => _messageIsEmpty;
+            set => SetProperty(ref _messageIsEmpty, value);
+        }
+
         protected override async Task<bool> SaveMethod(IEmailModel model)
         {
             bool allowSendMail = true;
+
+            if (MessageIsEmpty)
+            {
+                var retVal = await _messageService.ShowAsync("Do you want to send mail without a message?", "Sending mail", MessageButton.YesNo, MessageImage.Question);
+                allowSendMail = retVal == MessageResult.Yes;
+            }
+
+            if (!allowSendMail)
+            {
+                return false;
+            }
 
             if (string.IsNullOrWhiteSpace(Model.Subject))
             {
