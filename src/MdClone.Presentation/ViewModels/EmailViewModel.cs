@@ -1,7 +1,6 @@
 ﻿using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 using System.Windows.Input;
 using JetBrains.Annotations;
 using LogoFX.Client.Mvvm.Commanding;
