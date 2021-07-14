@@ -102,6 +102,8 @@ namespace MdClone.Presentation.Shared.Controls
 
             public event EventHandler ActualHeightChanged = delegate { };
 
+            public event EventHandler Unfocused = delegate { };
+
             #endregion
 
             #region Commands
@@ -139,7 +141,7 @@ namespace MdClone.Presentation.Shared.Controls
 
             public string Text
             {
-                get { return _text; }
+                get => _text;
                 set
                 {
                     if (_text == value)
@@ -157,7 +159,7 @@ namespace MdClone.Presentation.Shared.Controls
 
             public bool IsFocused
             {
-                get { return _isFocused; }
+                get => _isFocused;
                 set
                 {
                     if (_isFocused == value)
@@ -167,6 +169,10 @@ namespace MdClone.Presentation.Shared.Controls
 
                     _isFocused = value;
                     NotifyOfPropertyChange();
+                    if (!value)
+                    {
+                        Unfocused(this, EventArgs.Empty);
+                    }
                 }
             }
 
@@ -174,7 +180,7 @@ namespace MdClone.Presentation.Shared.Controls
 
             public string Watermark
             {
-                get { return _watermark; }
+                get => _watermark;
                 set
                 {
                     if (_watermark == value)
@@ -191,7 +197,7 @@ namespace MdClone.Presentation.Shared.Controls
 
             public double ActualHeight
             {
-                get { return _actualHeight; }
+                get => _actualHeight;
                 set
                 {
                     if (value.Equals(_actualHeight))
@@ -239,11 +245,13 @@ namespace MdClone.Presentation.Shared.Controls
             _textItem.TextChanged += OnTextChanged;
             _textItem.PreviewKeyDown += OnTextBoxPreviewKeyDown;
             _textItem.ActualHeightChanged += OnTextControlActualHeightChanged;
+            _textItem.Unfocused += OnTextUnfocused;
             _innerItems.Add(_textItem);
         }
 
         ~ItemsTextBoxControl()
         {
+            _textItem.Unfocused -= OnTextUnfocused;
             _textItem.KeyDown -= OnTextBoxKeyDown;
             _textItem.TextChanged -= OnTextChanged;
             _textItem.PreviewKeyDown -= OnTextBoxPreviewKeyDown;
@@ -292,20 +300,20 @@ namespace MdClone.Presentation.Shared.Controls
 
         public IEnumerable AutocompleteItemsSource
         {
-            get { return (IEnumerable)GetValue(AutocompleteItemsSourceProperty); }
-            set { SetValue(AutocompleteItemsSourceProperty, value); }
+            get => (IEnumerable)GetValue(AutocompleteItemsSourceProperty);
+            set => SetValue(AutocompleteItemsSourceProperty, value);
         }
 
         public string Watermark
         {
-            get { return (string)GetValue(WatermarkProperty); }
-            set { SetValue(WatermarkProperty, value); }
+            get => (string)GetValue(WatermarkProperty);
+            set => SetValue(WatermarkProperty, value);
         }
 
         public bool AutogenerateItems
         {
-            get { return (bool)GetValue(AutogenerateItemsProperty); }
-            set { SetValue(AutogenerateItemsProperty, value); }
+            get => (bool)GetValue(AutogenerateItemsProperty);
+            set => SetValue(AutogenerateItemsProperty, value);
         }
 
         public static readonly DependencyProperty StringToItemFuncProperty =
@@ -433,6 +441,18 @@ namespace MdClone.Presentation.Shared.Controls
             {
                 _listBox.Items.Filter = o => !((IList)ItemsSource).Contains(o) && Test(o, lower);
             }
+        }
+
+        private void OnTextUnfocused(object sender, EventArgs e)
+        {
+            var str = _textItem.Text;
+            if (string.IsNullOrEmpty(str))
+            {
+                return;
+            }
+
+            var item = StringToItemFunc(str);
+            MoveToItems(item);
         }
 
         private void OnListBoxPreviewMouseDown(object sender, MouseButtonEventArgs e)
